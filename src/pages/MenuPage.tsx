@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { useLogout } from '@/hooks/useAuth'
 
 export default function MenuPage() {
   const navigate = useNavigate()
+  const logout = useLogout()
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -45,12 +47,9 @@ export default function MenuPage() {
         <div className="text-center">
           <Button 
             variant="ghost" 
-            onClick={() => {
-              localStorage.removeItem('user')
-              navigate('/')
-            }}
+            onClick={logout}
           >
-            Logout
+            Välju
           </Button>
         </div>
       </div>

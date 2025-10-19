@@ -1,63 +1,24 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-
-interface MemberProfile {
-  id: number
-  name: string
-  osrsName?: string
-  totalLevel?: number
-  combatLevel?: number
-  joinDate?: string
-  [key: string]: any
-}
+import { useProfile } from '@/hooks/useProfile'
+import { ApiError } from '@/api/client'
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const [profile, setProfile] = useState<MemberProfile | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const { data: profile, isLoading, error, refetch } = useProfile()
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const userData = JSON.parse(localStorage.getItem('user') || '{}')
-        
-        if (!userData.memberId || !userData.code) {
-          setError('Kasutaja andmed puuduvad. Palun logi uuesti sisse.')
-          setLoading(false)
-          return
-        }
-
-        const response = await fetch(
-          `https://webhook-catcher-zeta.vercel.app/api/member/${userData.memberId}?code=${userData.code}`
-        )
-
-        const data = await response.json()
-
-        if (response.ok && data.status === 'success') {
-          setProfile(data.data)
-          // Update localStorage with fresh profile data
-          localStorage.setItem('user', JSON.stringify({
-            ...userData,
-            profile: data.data
-          }))
-        } else {
-          setError(data.message || 'Profiili laadimine ebaõnnestus')
-        }
-      } catch (err) {
-        console.error('Error fetching profile:', err)
-        setError('Ühenduse viga. Palun proovi hiljem uuesti.')
-      } finally {
-        setLoading(false)
-      }
+  const getErrorMessage = (err: Error): string => {
+    if (err instanceof ApiError) {
+      return err.message
     }
+    if (err.message.includes('Kasutaja andmed puuduvad')) {
+      return err.message
+    }
+    return 'Ühenduse viga. Palun proovi hiljem uuesti.'
+  }
 
-    fetchProfile()
-  }, [])
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
         <Card className="w-full max-w-2xl">
@@ -74,12 +35,14 @@ export default function ProfilePage() {
       <div className="min-h-screen flex items-center justify-center p-4">
         <Card className="w-full max-w-2xl">
           <CardContent className="p-8 space-y-4">
-            <p className="text-lg text-destructive text-center">{error}</p>
+            <p className="text-lg text-destructive text-center">
+              {getErrorMessage(error)}
+            </p>
             <div className="flex justify-center gap-4">
               <Button variant="outline" onClick={() => navigate('/menu')}>
                 Tagasi menüüsse
               </Button>
-              <Button onClick={() => window.location.reload()}>
+              <Button onClick={() => refetch()}>
                 Proovi uuesti
               </Button>
             </div>

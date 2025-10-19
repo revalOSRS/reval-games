@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -8,12 +7,13 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
+import { useLogin } from '@/hooks/useAuth'
+import { ApiError } from '@/api/client'
 
 export default function LoginPage() {
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const loginMutation = useLogin()
 
   const handleLogin = async () => {
     if (code.length !== 9) {
@@ -21,47 +21,26 @@ export default function LoginPage() {
       return
     }
 
-    setLoading(true)
     setError('')
 
-    try {
-      const response = await fetch(
-        'https://webhook-catcher-zeta.vercel.app/api/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ code }),
-        }
-      )
-
-      const data = await response.json()
-
-      if (response.ok && data.status === 'success') {
-        // Store member data in localStorage
-        localStorage.setItem('user', JSON.stringify({
-          memberId: data.data.id,
-          code,
-          profile: data.data
-        }))
-        navigate('/menu')
-      } else {
-        // Handle specific error messages
-        if (response.status === 403) {
-          setError('Konto ei ole aktiivne')
-        } else if (response.status === 401) {
-          setError('Vigane kood')
-        } else {
-          setError(data.message || 'Vigane kood. Palun proovi uuesti.')
-        }
+    loginMutation.mutate(
+      { code },
+      {
+        onError: (error) => {
+          if (error instanceof ApiError) {
+            if (error.status === 403) {
+              setError('Konto ei ole aktiivne')
+            } else if (error.status === 401) {
+              setError('Vigane kood')
+            } else {
+              setError(error.message || 'Vigane kood. Palun proovi uuesti.')
+            }
+          } else {
+            setError('Ühenduse viga. Palun proovi hiljem uuesti.')
+          }
+        },
       }
-    } catch (error) {
-      console.error('Login error:', error)
-      setError('Ühenduse viga. Palun proovi hiljem uuesti.')
-    } finally {
-      setLoading(false)
-    }
+    )
   }
 
   const handleComplete = (value: string) => {
@@ -89,7 +68,7 @@ export default function LoginPage() {
                 setCode(value)
                 handleComplete(value)
               }}
-              disabled={loading}
+              disabled={loginMutation.isPending}
             >
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
@@ -113,10 +92,10 @@ export default function LoginPage() {
           {error && <p className="text-sm text-destructive text-center">{error}</p>}
           <Button
             onClick={handleLogin}
-            disabled={loading || code.length !== 9}
+            disabled={loginMutation.isPending || code.length !== 9}
             className="w-full"
           >
-            {loading ? 'Verifying...' : 'Enter'}
+            {loginMutation.isPending ? 'Kontrollin...' : 'Sisene'}
           </Button>
         </CardContent>
       </Card>
