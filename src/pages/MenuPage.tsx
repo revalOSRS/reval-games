@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-router'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useLogout } from '@/hooks/useAuth'
@@ -15,7 +15,7 @@ export default function MenuPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card 
             className="cursor-pointer hover:border-primary transition-all"
-            onClick={() => navigate('/profile')}
+            onClick={() => navigate({ to: '/profile' })}
           >
             <CardHeader>
               <CardTitle>Profile</CardTitle>
@@ -30,7 +30,7 @@ export default function MenuPage() {
 
           <Card 
             className="cursor-pointer hover:border-primary transition-all"
-            onClick={() => navigate('/events')}
+            onClick={() => navigate({ to: '/events' })}
           >
             <CardHeader>
               <CardTitle>Active Events</CardTitle>

@@ -26,9 +26,23 @@ export interface LoginRequest {
   code: string
 }
 
+export interface DiscordAuthRequest {
+  code: string
+}
+
+export interface DiscordAuthResponse {
+  status: 'success'
+  data: MemberProfile
+  message: string
+}
+
 export const membersApi = {
   login: async (data: LoginRequest): Promise<LoginResponse> => {
     return api.post<LoginResponse>('/login', data)
+  },
+
+  discordAuth: async (data: DiscordAuthRequest): Promise<DiscordAuthResponse> => {
+    return api.post<DiscordAuthResponse>('/auth/discord', data)
   },
 
   getProfile: async (memberId: number, code: string): Promise<MemberProfileResponse> => {

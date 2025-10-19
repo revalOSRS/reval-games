@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -7,7 +7,7 @@ type TabType = 'team1' | 'team2' | 'board' | 'tiles' | 'roles'
 
 export default function BattleshipBingoPage() {
   const navigate = useNavigate()
-  const { eventId } = useParams()
+  const { eventId } = useParams({ strict: false })
   const [activeTab, setActiveTab] = useState<TabType>('board')
 
   // Generate columns A-Z then AA-AD (30 columns total for wider board)
@@ -62,7 +62,7 @@ export default function BattleshipBingoPage() {
           Roles & Info
         </Button>
         
-        <Button variant="outline" onClick={() => navigate('/events')} className="ml-4">
+        <Button variant="outline" onClick={() => navigate({ to: '/events' })} className="ml-4">
           Back
         </Button>
       </div>

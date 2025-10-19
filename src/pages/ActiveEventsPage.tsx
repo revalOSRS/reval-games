@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-router'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
@@ -30,7 +30,7 @@ export default function ActiveEventsPage() {
       <div className="max-w-6xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">Active Events</h1>
-          <Button variant="outline" onClick={() => navigate('/menu')}>
+          <Button variant="outline" onClick={() => navigate({ to: '/menu' })}>
             Back to Menu
           </Button>
         </div>
@@ -40,7 +40,7 @@ export default function ActiveEventsPage() {
             <Card 
               key={event.id}
               className="cursor-pointer hover:border-primary transition-all"
-              onClick={() => navigate(`/event/${event.type}/${event.id}`)}
+              onClick={() => navigate({ to: `/event/${event.type}/$eventId`, params: { eventId: event.id.toString() } })}
             >
               <CardHeader>
                 <div className="flex items-center justify-between">

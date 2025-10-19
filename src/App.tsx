@@ -1,23 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import LoginPage from './pages/LoginPage'
-import MenuPage from './pages/MenuPage'
-import ProfilePage from './pages/ProfilePage'
-import ActiveEventsPage from './pages/ActiveEventsPage'
-import BattleshipBingoPage from './pages/BattleshipBingoPage'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+
+// Create a new router instance
+const router = createRouter({ routeTree })
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/events" element={<ActiveEventsPage />} />
-        <Route path="/event/battleship-bingo/:eventId" element={<BattleshipBingoPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-router'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useProfile } from '@/hooks/useProfile'
@@ -39,7 +39,7 @@ export default function ProfilePage() {
               {getErrorMessage(error)}
             </p>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" onClick={() => navigate('/menu')}>
+              <Button variant="outline" onClick={() => navigate({ to: '/menu' })}>
                 Tagasi menüüsse
               </Button>
               <Button onClick={() => refetch()}>
@@ -57,7 +57,7 @@ export default function ProfilePage() {
       <div className="w-full max-w-2xl space-y-8">
         <div className="flex justify-between items-center">
           <h1 className="text-4xl font-bold text-foreground">Mängija Profiil</h1>
-          <Button variant="outline" onClick={() => navigate('/menu')}>
+          <Button variant="outline" onClick={() => navigate({ to: '/menu' })}>
             Tagasi menüüsse
           </Button>
         </div>

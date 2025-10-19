@@ -1,30 +1,24 @@
 import { useMutation } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
-import { membersApi, LoginRequest } from '@/api/members'
+import { membersApi, DiscordAuthRequest } from '@/api/members'
 
-export function useLogin() {
-  const navigate = useNavigate()
-
+export function useDiscordAuth() {
   return useMutation({
-    mutationFn: (data: LoginRequest) => membersApi.login(data),
-    onSuccess: (response, variables) => {
-      // Store member data in localStorage with the original code
+    mutationFn: (data: DiscordAuthRequest) => membersApi.discordAuth(data),
+    onSuccess: (response) => {
+      // Store member data in localStorage after Discord auth
       localStorage.setItem('user', JSON.stringify({
         memberId: response.data.id,
-        code: variables.code,
-        profile: response.data
+        profile: response.data,
+        authType: 'discord'
       }))
-      navigate('/menu')
     },
   })
 }
 
 export function useLogout() {
-  const navigate = useNavigate()
-
   return () => {
     localStorage.removeItem('user')
-    navigate('/')
+    window.location.href = '/'
   }
 }
 
@@ -35,5 +29,10 @@ export function getStoredUser() {
   } catch {
     return null
   }
+}
+
+export function isAuthenticated(): boolean {
+  const user = getStoredUser()
+  return !!user && !!user.memberId
 }
 
