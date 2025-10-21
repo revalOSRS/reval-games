@@ -127,8 +127,10 @@ export const membersApi = {
   },
 
   getPlayerProfile: async (discordId: string, code?: string): Promise<PlayerProfileResponse> => {
-    const query = code ? `?code=${code}` : ''
-    return api.get<PlayerProfileResponse>(`/player/${discordId}${query}`)
+    const options: RequestInit = code 
+      ? { headers: { 'x-member-code': code } } 
+      : {}
+    return api.get<PlayerProfileResponse>(`/player/${discordId}`, options)
   },
 }
 
