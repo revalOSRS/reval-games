@@ -16,17 +16,24 @@ function getRankName(totalScore: number): { name: string; color: string } {
   return { name: 'Recruit', color: 'bg-gray-400' }
 }
 
-function formatNumber(num: number): string {
-  if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
-  if (num >= 1000) return `${(num / 1000).toFixed(1)}K`
-  return num.toString()
+function safeNumber(value: any, defaultValue: number = 0): number {
+  const num = Number(value)
+  return isNaN(num) ? defaultValue : num
 }
 
-function formatGP(amount: number): string {
-  if (amount >= 1000000000) return `${(amount / 1000000000).toFixed(2)}B gp`
-  if (amount >= 1000000) return `${(amount / 1000000).toFixed(1)}M gp`
-  if (amount >= 1000) return `${(amount / 1000).toFixed(1)}K gp`
-  return `${amount} gp`
+function formatNumber(num: any): string {
+  const n = safeNumber(num, 0)
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`
+  return n.toString()
+}
+
+function formatGP(amount: any): string {
+  const a = safeNumber(amount, 0)
+  if (a >= 1000000000) return `${(a / 1000000000).toFixed(2)}B gp`
+  if (a >= 1000000) return `${(a / 1000000).toFixed(1)}M gp`
+  if (a >= 1000) return `${(a / 1000).toFixed(1)}K gp`
+  return `${a} gp`
 }
 
 export default function ProfilePage() {
@@ -83,18 +90,20 @@ export default function ProfilePage() {
 
   if (!profileData) return null
 
-  const { member, osrs_accounts, donations, wom } = profileData
+  const { member, osrs_accounts = [], donations, wom } = profileData
   
-  // Calculate total score (EHP + EHB) across all accounts
-  const totalScore = osrs_accounts.reduce((sum, acc) => sum + acc.ehp + acc.ehb, 0)
+  // Calculate total score (EHP + EHB) across all accounts with safe number conversion
+  const totalScore = osrs_accounts.reduce((sum, acc) => {
+    return sum + safeNumber(acc.ehp, 0) + safeNumber(acc.ehb, 0)
+  }, 0)
   const rank = getRankName(totalScore)
   
   // Find best account
-  const bestAccount = osrs_accounts.reduce((best, acc) => {
-    const accScore = acc.ehp + acc.ehb
-    const bestScore = best ? best.ehp + best.ehb : 0
+  const bestAccount = osrs_accounts.length > 0 ? osrs_accounts.reduce((best, acc) => {
+    const accScore = safeNumber(acc.ehp, 0) + safeNumber(acc.ehb, 0)
+    const bestScore = best ? safeNumber(best.ehp, 0) + safeNumber(best.ehb, 0) : 0
     return accScore > bestScore ? acc : best
-  }, osrs_accounts[0])
+  }, osrs_accounts[0]) : null
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -136,21 +145,21 @@ export default function ProfilePage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center p-4 bg-muted rounded-lg">
                 <p className="text-2xl font-bold text-primary">{osrs_accounts.length}</p>
                 <p className="text-sm text-muted-foreground mt-1">OSRS Kontod</p>
               </div>
               <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-green-600">{totalScore.toFixed(1)}</p>
+                <p className="text-2xl font-bold text-green-600">{safeNumber(totalScore).toFixed(1)}</p>
                 <p className="text-sm text-muted-foreground mt-1">Kogu Skoor</p>
               </div>
               <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-blue-600">{osrs_accounts.reduce((sum, acc) => sum + acc.ehp, 0).toFixed(1)}</p>
+                <p className="text-2xl font-bold text-blue-600">{osrs_accounts.reduce((sum, acc) => sum + safeNumber(acc.ehp, 0), 0).toFixed(1)}</p>
                 <p className="text-sm text-muted-foreground mt-1">Kogu EHP</p>
               </div>
               <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-purple-600">{osrs_accounts.reduce((sum, acc) => sum + acc.ehb, 0).toFixed(1)}</p>
+                <p className="text-2xl font-bold text-purple-600">{osrs_accounts.reduce((sum, acc) => sum + safeNumber(acc.ehb, 0), 0).toFixed(1)}</p>
                 <p className="text-sm text-muted-foreground mt-1">Kogu EHB</p>
               </div>
             </div>
@@ -186,7 +195,7 @@ export default function ProfilePage() {
                             )}
                           </div>
                           <p className="text-sm text-muted-foreground">
-                            EHP: {account.ehp.toFixed(1)} • EHB: {account.ehb.toFixed(1)} • Skoor: {(account.ehp + account.ehb).toFixed(1)}
+                            EHP: {safeNumber(account.ehp).toFixed(1)} • EHB: {safeNumber(account.ehb).toFixed(1)} • Skoor: {(safeNumber(account.ehp) + safeNumber(account.ehb)).toFixed(1)}
                           </p>
                         </div>
                       </div>
@@ -206,11 +215,11 @@ export default function ProfilePage() {
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
                         <div className="bg-background p-3 rounded border">
                           <p className="text-xs text-muted-foreground">Efficient Hours (PvM)</p>
-                          <p className="text-xl font-bold text-purple-600">{account.ehb.toFixed(2)}</p>
+                          <p className="text-xl font-bold text-purple-600">{safeNumber(account.ehb).toFixed(2)}</p>
                         </div>
                         <div className="bg-background p-3 rounded border">
                           <p className="text-xs text-muted-foreground">Efficient Hours (Skilling)</p>
-                          <p className="text-xl font-bold text-blue-600">{account.ehp.toFixed(2)}</p>
+                          <p className="text-xl font-bold text-blue-600">{safeNumber(account.ehp).toFixed(2)}</p>
                         </div>
                         <div className="bg-background p-3 rounded border">
                           <p className="text-xs text-muted-foreground">Loodud</p>
@@ -218,7 +227,7 @@ export default function ProfilePage() {
                         </div>
                       </div>
 
-                      {account === bestAccount && wom.player && (
+                      {bestAccount && account.id === bestAccount.id && wom?.player && (
                         <div className="mt-4 p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg border border-primary/20">
                           <p className="text-sm font-semibold text-primary mb-2">🏆 WiseOldMan Stats</p>
                           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
@@ -228,11 +237,11 @@ export default function ProfilePage() {
                             </div>
                             <div>
                               <p className="text-muted-foreground">Account Type</p>
-                              <p className="font-bold capitalize">{wom.player.type}</p>
+                              <p className="font-bold capitalize">{wom.player.type || 'N/A'}</p>
                             </div>
                             <div>
                               <p className="text-muted-foreground">Build</p>
-                              <p className="font-bold capitalize">{wom.player.build}</p>
+                              <p className="font-bold capitalize">{wom.player.build || 'N/A'}</p>
                             </div>
                           </div>
                         </div>
@@ -257,15 +266,15 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 <div className="p-4 bg-muted rounded-lg">
                   <p className="text-sm text-muted-foreground">Kokku kinnitatud</p>
-                  <p className="text-2xl font-bold text-green-600">{formatGP(donations.total_approved)}</p>
+                  <p className="text-2xl font-bold text-green-600">{formatGP(donations?.total_approved)}</p>
                 </div>
-                {donations.total_pending > 0 && (
+                {safeNumber(donations?.total_pending) > 0 && (
                   <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
                     <p className="text-sm text-muted-foreground">Ootel</p>
                     <p className="text-2xl font-bold text-yellow-600">{formatGP(donations.total_pending)}</p>
                   </div>
                 )}
-                {donations.recent.length > 0 && (
+                {donations?.recent?.length > 0 && (
                   <div className="space-y-2">
                     <Separator />
                     <p className="text-sm font-semibold">Hiljutised annetused</p>
@@ -290,7 +299,7 @@ export default function ProfilePage() {
               <CardDescription>Hiljutised WiseOldMan saavutused</CardDescription>
             </CardHeader>
             <CardContent>
-              {wom.achievements.length === 0 ? (
+              {!wom?.achievements || wom.achievements.length === 0 ? (
                 <p className="text-center text-muted-foreground py-8">Saavutusi ei leitud</p>
               ) : (
                 <div className="space-y-2">
@@ -314,7 +323,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Weekly Gains */}
-        {wom.gains && (
+        {wom?.gains && (
           <Card>
             <CardHeader>
               <CardTitle>Nädalased Võidud</CardTitle>
@@ -324,25 +333,25 @@ export default function ProfilePage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
                   <p className="text-xl font-bold text-green-600">
-                    +{wom.gains.data.computed.ehp.gained.toFixed(2)}
+                    +{safeNumber(wom.gains.data?.computed?.ehp?.gained).toFixed(2)}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">EHP</p>
                 </div>
                 <div className="text-center p-4 bg-purple-500/10 border border-purple-500/20 rounded-lg">
                   <p className="text-xl font-bold text-purple-600">
-                    +{wom.gains.data.computed.ehb.gained.toFixed(2)}
+                    +{safeNumber(wom.gains.data?.computed?.ehb?.gained).toFixed(2)}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">EHB</p>
                 </div>
                 <div className="text-center p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                   <p className="text-xl font-bold text-blue-600">
-                    +{formatNumber(wom.gains.data.skills.overall?.gained || 0)}
+                    +{formatNumber(wom.gains.data?.skills?.overall?.gained || 0)}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">XP</p>
                 </div>
                 <div className="text-center p-4 bg-orange-500/10 border border-orange-500/20 rounded-lg">
                   <p className="text-xl font-bold text-orange-600">
-                    +{Object.values(wom.gains.data.bosses).reduce((sum: number, boss: any) => sum + (boss.gained || 0), 0)}
+                    +{safeNumber(Object.values(wom.gains.data?.bosses || {}).reduce((sum: number, boss: any) => sum + safeNumber(boss?.gained, 0), 0))}
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">Boss KC</p>
                 </div>
