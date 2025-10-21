@@ -28,16 +28,77 @@
 }
 
 body {
-  background-color: #02010F;
+  background: #02010F;
   color: var(--color-foreground);
   margin: 0;
   min-height: 100vh;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(34, 197, 94, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.12) 0%, transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 25%);
+  animation: float 45s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  15% {
+    transform: translate(25px, -40px) rotate(45deg) scale(1.05);
+  }
+  30% {
+    transform: translate(-15px, -30px) rotate(90deg) scale(0.95);
+  }
+  45% {
+    transform: translate(-40px, 20px) rotate(180deg) scale(1.08);
+  }
+  60% {
+    transform: translate(10px, 35px) rotate(220deg) scale(0.92);
+  }
+  75% {
+    transform: translate(35px, 15px) rotate(290deg) scale(1.03);
+  }
+  90% {
+    transform: translate(-20px, -25px) rotate(340deg) scale(0.98);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg) scale(1);
+  }
 }
 
 #root {
   min-height: 100vh;
-  background-color: #02010F;
+  position: relative;
+  z-index: 1;
 }
 
 /* Custom Scrollbar Styling */
