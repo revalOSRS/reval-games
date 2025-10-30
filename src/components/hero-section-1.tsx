@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@tanstack/react-router'
-import { ChevronRight, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { AnimatedList } from '@/components/ui/animated-list'
@@ -15,7 +15,6 @@ import monarchRank from '@/assets/ranks/monarch.png'
 import saviourRank from '@/assets/ranks/saviour.png'
 import defilerRank from '@/assets/ranks/defiler.png'
 import trialistRank from '@/assets/ranks/trialist.png'
-import { membersApi } from '@/api/members'
 import { activityApi, type ActivityEvent, type WOMActivity } from '@/api/activities'
 import { womApi } from '@/api/wom'
 import { ClanStats } from '@/components/ClanStats'
@@ -38,7 +37,7 @@ const transitionVariants = {
             },
         },
     },
-}
+} as const
 
 // Helper function to format time ago in Estonian
 function formatTimeAgo(dateString: string): string {
@@ -383,7 +382,7 @@ export function HeroSection() {
                             <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-sm text-muted-foreground">
                                 <Link to="/liikmed" className="hover:text-primary transition-colors">
                                     Liikmed
-                                </Link>
+                            </Link>
                                 <a href="https://discord.gg/7Fe5sWs4Su" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                                     Discord
                                 </a>
@@ -447,16 +446,16 @@ export const HeroHeader = () => {
                                     <li key={index}>
                                         {item.href.startsWith('#') ? (
                                             <a
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
+                                            href={item.href}
+                                            className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                            <span>{item.name}</span>
                                             </a>
                                         ) : (
                                             <Link
                                                 to={item.href}
                                                 className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                                 <span>{item.name}</span>
-                                            </Link>
+                                        </Link>
                                         )}
                                     </li>
                                 ))}
@@ -470,16 +469,16 @@ export const HeroHeader = () => {
                                         <li key={index}>
                                             {item.href.startsWith('#') ? (
                                                 <a
-                                                    href={item.href}
-                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                    <span>{item.name}</span>
+                                                href={item.href}
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                                <span>{item.name}</span>
                                                 </a>
                                             ) : (
                                                 <Link
                                                     to={item.href}
                                                     className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                                     <span>{item.name}</span>
-                                                </Link>
+                                            </Link>
                                             )}
                                         </li>
                                     ))}

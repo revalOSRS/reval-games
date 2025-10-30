@@ -11,8 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { Button } from '@/components/ui/button'
-import { Avatar } from '@/components/ui/avatar'
 
 const ADMIN_DISCORD_ID = '603849391970975744'
 
@@ -51,11 +49,11 @@ export function AppSidebar() {
   }
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/40" defaultOpen={false}>
+    <Sidebar collapsible="icon" className="border-r border-border/40">
       <SidebarHeader className="border-b border-border/40 p-2">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" className="h-12" tooltip={{ children: "Reval Games", hidden: false }}>
+            <SidebarMenuButton className="h-12">
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 🎮
               </div>
