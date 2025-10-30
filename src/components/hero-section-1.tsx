@@ -267,7 +267,7 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link to={loggedIn ? "/menu" : "/login"}>
+                                        <Link to="/menu">
                                             <span className="text-nowrap">Sisene Mängukoopasse</span>
                                         </Link>
                                     </Button>
@@ -478,8 +478,8 @@ export const HeroHeader = () => {
                                         ) : (
                                             <Link
                                                 to={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
+                                            className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                            <span>{item.name}</span>
                                         </Link>
                                         )}
                                     </li>
@@ -501,8 +501,8 @@ export const HeroHeader = () => {
                                             ) : (
                                                 <Link
                                                     to={item.href}
-                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                    <span>{item.name}</span>
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                                <span>{item.name}</span>
                                             </Link>
                                             )}
                                         </li>
@@ -543,23 +543,23 @@ export const HeroHeader = () => {
                                     </div>
                                 ) : (
                                     <>
-                                        <Button
-                                            asChild
-                                            variant="outline"
-                                            size="sm"
-                                            className={cn(isScrolled && 'lg:hidden')}>
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    size="sm"
+                                    className={cn(isScrolled && 'lg:hidden')}>
+                                            <Link to="/login">
+                                        <span>Login</span>
+                                    </Link>
+                                </Button>
+                                <Button
+                                    asChild
+                                    size="sm"
+                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
                                             <Link to="/login">
                                                 <span>Login</span>
-                                            </Link>
-                                        </Button>
-                                        <Button
-                                            asChild
-                                            size="sm"
-                                            className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                            <Link to="/login">
-                                                <span>Login</span>
-                                            </Link>
-                                        </Button>
+                                    </Link>
+                                </Button>
                                     </>
                                 )}
                             </div>
