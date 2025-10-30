@@ -1,10 +1,7 @@
-import { createRoute } from '@tanstack/react-router'
-import { Route as RootRoute } from './__root'
-import LoginPage from '@/pages/LoginPage'
+import { createFileRoute } from '@tanstack/react-router'
+import LandingPage from '@/pages/LandingPage'
 
-export const Route = createRoute({
-  getParentRoute: () => RootRoute,
-  path: '/',
-  component: LoginPage,
+export const Route = createFileRoute('/')({
+  component: LandingPage,
 })
 

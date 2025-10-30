@@ -1,0 +1,57 @@
+{
+  "boardId": "example-board-001",
+  "name": "Example Battleship Bingo Board",
+  "eventDate": "2025-01-01",
+  "description": "An example board showing the format for battleship bingo boards",
+  "teams": [
+    {
+      "id": "team1",
+      "name": "Team Zamorak",
+      "color": "#8B0000",
+      "members": []
+    },
+    {
+      "id": "team2",
+      "name": "Team Saradomin",
+      "color": "#4169E1",
+      "members": []
+    }
+  ],
+  "grid": {
+    "columns": 30,
+    "rows": 15
+  },
+  "tiles": {
+    "A1": {
+      "tileId": "abyssal-whip",
+      "assignedTo": "team1",
+      "status": "pending"
+    },
+    "A2": {
+      "tileId": "dragon-warhammer",
+      "assignedTo": "team2",
+      "status": "pending"
+    },
+    "B1": {
+      "tileId": "bandos-chestplate",
+      "assignedTo": "team1",
+      "status": "completed",
+      "completedBy": "player123",
+      "completedAt": "2025-01-01T12:00:00Z"
+    },
+    "C3": {
+      "tileId": "fire-cape",
+      "assignedTo": "team2",
+      "status": "in-progress"
+    }
+  },
+  "rules": {
+    "pointsPerTile": 1,
+    "bonusForRow": 5,
+    "bonusForColumn": 5,
+    "timeLimit": "7 days",
+    "allowDuplicates": false
+  }
+}
+
+

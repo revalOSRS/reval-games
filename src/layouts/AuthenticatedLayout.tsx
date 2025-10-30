@@ -1,24 +1,29 @@
-import { Outlet, useNavigate } from '@tanstack/react-router'
+import { Outlet } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { isAuthenticated } from '@/hooks/useAuth'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/AppSidebar'
 
 export default function AuthenticatedLayout() {
-  const navigate = useNavigate()
-
   useEffect(() => {
     if (!isAuthenticated()) {
-      navigate({ to: '/' })
+      window.location.href = '/login'
     }
-  }, [navigate])
+  }, [])
 
   if (!isAuthenticated()) {
     return null
   }
 
   return (
-    <div className="min-h-screen">
-      <Outlet />
-    </div>
+    <SidebarProvider defaultOpen={false}>
+      <div className="flex min-h-screen w-full bg-background">
+        <AppSidebar />
+        <main className="flex-1 bg-background">
+          <Outlet />
+        </main>
+      </div>
+    </SidebarProvider>
   )
 }
 

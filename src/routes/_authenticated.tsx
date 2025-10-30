@@ -1,10 +1,7 @@
-import { createRoute } from '@tanstack/react-router'
-import { Route as RootRoute } from './__root'
+import { createFileRoute } from '@tanstack/react-router'
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout'
 
-export const Route = createRoute({
-  getParentRoute: () => RootRoute,
-  id: '_authenticated',
+export const Route = createFileRoute('/_authenticated')({
   component: AuthenticatedLayout,
 })
 

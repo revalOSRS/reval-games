@@ -1,10 +1,7 @@
-import { createRoute } from '@tanstack/react-router'
-import { Route as AuthRoute } from '../_authenticated'
+import { createFileRoute } from '@tanstack/react-router'
 import ActiveEventsPage from '@/pages/ActiveEventsPage'
 
-export const Route = createRoute({
-  getParentRoute: () => AuthRoute,
-  path: '/events',
+export const Route = createFileRoute('/_authenticated/events')({
   component: ActiveEventsPage,
 })
 

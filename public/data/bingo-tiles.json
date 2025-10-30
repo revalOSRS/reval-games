@@ -1,0 +1,1678 @@
+{
+  "tiles": [
+    {
+      "id": "boss_corp_10",
+      "task": "Kill Corporeal Beast 10 times",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Corporeal_Beast"
+    },
+    {
+      "id": "boss_zulrah_25",
+      "task": "Kill Zulrah 25 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Zulrah"
+    },
+    {
+      "id": "boss_vorkath_50",
+      "task": "Kill Vorkath 50 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Vorkath"
+    },
+    {
+      "id": "boss_kbd_30",
+      "task": "Kill King Black Dragon 30 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "King_Black_Dragon"
+    },
+    {
+      "id": "boss_kq_20",
+      "task": "Kill Kalphite Queen 20 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Kalphite_Queen"
+    },
+    {
+      "id": "boss_cerberus_15",
+      "task": "Kill Cerberus 15 times",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Cerberus"
+    },
+    {
+      "id": "boss_sire_15",
+      "task": "Kill Abyssal Sire 15 times",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Abyssal_Sire"
+    },
+    {
+      "id": "boss_kraken_40",
+      "task": "Kill Kraken 40 times",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Kraken"
+    },
+    {
+      "id": "boss_thermy_25",
+      "task": "Kill Thermonuclear smoke devil 25 times",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Thermonuclear_smoke_devil"
+    },
+    {
+      "id": "boss_hydra_20",
+      "task": "Kill Alchemical Hydra 20 times",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Alchemical_Hydra_(serpentine)"
+    },
+    {
+      "id": "gwd_bandos_15",
+      "task": "Kill General Graardor 15 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "General_Graardor"
+    },
+    {
+      "id": "gwd_armadyl_15",
+      "task": "Kill Kree'arra 15 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Kree'arra"
+    },
+    {
+      "id": "gwd_sara_15",
+      "task": "Kill Commander Zilyana 15 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Commander_Zilyana"
+    },
+    {
+      "id": "gwd_zammy_15",
+      "task": "Kill K'ril Tsutsaroth 15 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "K'ril_Tsutsaroth"
+    },
+    {
+      "id": "wildy_callisto_12",
+      "task": "Kill Callisto 12 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Callisto"
+    },
+    {
+      "id": "wildy_vetion_12",
+      "task": "Kill Vet'ion 12 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Vet'ion"
+    },
+    {
+      "id": "wildy_venenatis_12",
+      "task": "Kill Venenatis 12 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Venenatis"
+    },
+    {
+      "id": "wildy_scorpia_20",
+      "task": "Kill Scorpia 20 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Scorpia"
+    },
+    {
+      "id": "wildy_chaos_fanatic_30",
+      "task": "Kill Chaos Fanatic 30 times",
+      "category": "pvm",
+      "difficulty": "easy",
+      "icon": "Chaos_Fanatic"
+    },
+    {
+      "id": "barrows_100",
+      "task": "Complete 100 Barrows runs",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Barrows_icon"
+    },
+    {
+      "id": "barrows_double_item",
+      "task": "Get a double barrows item drop",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Dharok's_helm"
+    },
+    {
+      "id": "barrows_any_set",
+      "task": "Complete any full Barrows armor set",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Guthan's_warspear"
+    },
+    {
+      "id": "raids_cox_10",
+      "task": "Complete Chambers of Xeric 10 times",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Twisted_bow"
+    },
+    {
+      "id": "raids_cox_purple",
+      "task": "Get a purple chest in Chambers of Xeric",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Dexterous_prayer_scroll"
+    },
+    {
+      "id": "raids_tob_5",
+      "task": "Complete Theatre of Blood 5 times",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Scythe_of_vitur"
+    },
+    {
+      "id": "raids_toa_150",
+      "task": "Complete Tombs of Amascut at 150+ invocation",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Tumeken's_shadow"
+    },
+    {
+      "id": "raids_toa_10",
+      "task": "Complete Tombs of Amascut 10 times",
+      "category": "raids",
+      "difficulty": "hard",
+      "icon": "Elidinis'_ward"
+    },
+    {
+      "id": "get_godsword",
+      "task": "Obtain any Godsword",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Armadyl_godsword"
+    },
+    {
+      "id": "get_zenyte",
+      "task": "Obtain any Zenyte jewelry piece",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Amulet_of_torture"
+    },
+    {
+      "id": "get_draconic_visage",
+      "task": "Obtain a Draconic visage",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Draconic_visage"
+    },
+    {
+      "id": "get_dragon_warhammer",
+      "task": "Obtain a Dragon warhammer",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Dragon_warhammer"
+    },
+    {
+      "id": "get_abyssal_whip",
+      "task": "Obtain an Abyssal whip",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Abyssal_whip"
+    },
+    {
+      "id": "get_trident",
+      "task": "Obtain any Trident",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Trident_of_the_seas"
+    },
+    {
+      "id": "get_occult_necklace",
+      "task": "Obtain an Occult necklace",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Occult_necklace"
+    },
+    {
+      "id": "get_dragon_pickaxe",
+      "task": "Obtain a Dragon pickaxe",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Dragon_pickaxe"
+    },
+    {
+      "id": "get_dragon_axe",
+      "task": "Obtain a Dragon axe",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Dragon_axe"
+    },
+    {
+      "id": "get_dragon_harpoon",
+      "task": "Obtain a Dragon harpoon",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Dragon_harpoon"
+    },
+    {
+      "id": "get_ranger_boots",
+      "task": "Obtain Ranger boots",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Ranger_boots"
+    },
+    {
+      "id": "get_bandos_item",
+      "task": "Obtain any Bandos armor piece",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Bandos_chestplate"
+    },
+    {
+      "id": "get_armadyl_item",
+      "task": "Obtain any Armadyl armor piece",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Armadyl_helmet"
+    },
+    {
+      "id": "clue_easy_50",
+      "task": "Complete 50 Easy clue scrolls",
+      "category": "clues",
+      "difficulty": "easy",
+      "icon": "Clue_scroll_(easy)"
+    },
+    {
+      "id": "clue_medium_40",
+      "task": "Complete 40 Medium clue scrolls",
+      "category": "clues",
+      "difficulty": "medium",
+      "icon": "Clue_scroll_(medium)"
+    },
+    {
+      "id": "clue_hard_30",
+      "task": "Complete 30 Hard clue scrolls",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Clue_scroll_(hard)"
+    },
+    {
+      "id": "clue_elite_15",
+      "task": "Complete 15 Elite clue scrolls",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Clue_scroll_(elite)"
+    },
+    {
+      "id": "clue_master_10",
+      "task": "Complete 10 Master clue scrolls",
+      "category": "clues",
+      "difficulty": "extreme",
+      "icon": "Clue_scroll_(master)"
+    },
+    {
+      "id": "clue_unique_any",
+      "task": "Get any clue scroll unique reward",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Gilded_platebody"
+    },
+    {
+      "id": "mining_1m_xp",
+      "task": "Gain 1,000,000 Mining XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Mining_icon"
+    },
+    {
+      "id": "fishing_1m_xp",
+      "task": "Gain 1,000,000 Fishing XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Fishing_icon"
+    },
+    {
+      "id": "woodcutting_1m_xp",
+      "task": "Gain 1,000,000 Woodcutting XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Woodcutting_icon"
+    },
+    {
+      "id": "thieving_1m_xp",
+      "task": "Gain 1,000,000 Thieving XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Thieving_icon"
+    },
+    {
+      "id": "agility_1m_xp",
+      "task": "Gain 1,000,000 Agility XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Agility_icon"
+    },
+    {
+      "id": "runecraft_500k_xp",
+      "task": "Gain 500,000 Runecraft XP",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Runecraft_icon"
+    },
+    {
+      "id": "slayer_500k_xp",
+      "task": "Gain 500,000 Slayer XP",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Slayer_icon"
+    },
+    {
+      "id": "farming_1m_xp",
+      "task": "Gain 1,000,000 Farming XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Farming_icon"
+    },
+    {
+      "id": "construction_1m_xp",
+      "task": "Gain 1,000,000 Construction XP",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Construction_icon"
+    },
+    {
+      "id": "hunter_1m_xp",
+      "task": "Gain 1,000,000 Hunter XP",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Hunter_icon"
+    },
+    {
+      "id": "craft_1000_items",
+      "task": "Craft 1,000 of any item",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Crafting_icon"
+    },
+    {
+      "id": "smith_500_bars",
+      "task": "Smith 500 bars into items",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Smithing_icon"
+    },
+    {
+      "id": "cook_1000_food",
+      "task": "Cook 1,000 food items",
+      "category": "skills",
+      "difficulty": "easy",
+      "icon": "Cooking_icon"
+    },
+    {
+      "id": "fletch_2000_items",
+      "task": "Fletch 2,000 items",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Fletching_icon"
+    },
+    {
+      "id": "diary_any_elite",
+      "task": "Complete any Elite Achievement Diary",
+      "category": "diaries",
+      "difficulty": "extreme",
+      "icon": "Achievement_Diary"
+    },
+    {
+      "id": "diary_any_hard",
+      "task": "Complete any Hard Achievement Diary",
+      "category": "diaries",
+      "difficulty": "hard",
+      "icon": "Achievement_Diary"
+    },
+    {
+      "id": "quest_10_points",
+      "task": "Earn 10 Quest Points",
+      "category": "quests",
+      "difficulty": "easy",
+      "icon": "Quest_point_icon"
+    },
+    {
+      "id": "quest_grandmaster",
+      "task": "Complete any Grandmaster quest",
+      "category": "quests",
+      "difficulty": "hard",
+      "icon": "Quest_point_icon"
+    },
+    {
+      "id": "minigame_pc_100",
+      "task": "Play 100 Pest Control games",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Void_knight_top"
+    },
+    {
+      "id": "minigame_ba_level_5",
+      "task": "Get Level 5 in any Barbarian Assault role",
+      "category": "minigames",
+      "difficulty": "hard",
+      "icon": "Fighter_torso"
+    },
+    {
+      "id": "minigame_tithe_farm_100",
+      "task": "Earn 100 Tithe Farm points",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Gricoller's_can"
+    },
+    {
+      "id": "minigame_mta_1000",
+      "task": "Earn 1,000 Mage Training Arena points",
+      "category": "minigames",
+      "difficulty": "hard",
+      "icon": "Infinity_top"
+    },
+    {
+      "id": "minigame_lms_50",
+      "task": "Play 50 Last Man Standing games",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Rune_pouch"
+    },
+    {
+      "id": "minigame_wintertodt_50",
+      "task": "Complete 50 Wintertodt kills",
+      "category": "minigames",
+      "difficulty": "easy",
+      "icon": "Pyromancer_outfit"
+    },
+    {
+      "id": "minigame_tempoross_30",
+      "task": "Defeat Tempoross 30 times",
+      "category": "minigames",
+      "difficulty": "easy",
+      "icon": "Spirit_angler"
+    },
+    {
+      "id": "minigame_sepulchre_100",
+      "task": "Complete 100 Hallowed Sepulchre runs",
+      "category": "minigames",
+      "difficulty": "hard",
+      "icon": "Hallowed_symbol"
+    },
+    {
+      "id": "minigame_gauntlet_10",
+      "task": "Complete the Gauntlet 10 times",
+      "category": "minigames",
+      "difficulty": "hard",
+      "icon": "Crystal_weapon_seed"
+    },
+    {
+      "id": "minigame_cg_5",
+      "task": "Complete Corrupted Gauntlet 5 times",
+      "category": "minigames",
+      "difficulty": "extreme",
+      "icon": "Blade_of_saeldor"
+    },
+    {
+      "id": "profit_10m",
+      "task": "Earn 10M GP profit through any method",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Coins_10000"
+    },
+    {
+      "id": "profit_5m",
+      "task": "Earn 5M GP profit through any method",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Coins_10000"
+    },
+    {
+      "id": "ge_flip_1m",
+      "task": "Make 1M GP profit from GE flipping",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Coins_1000"
+    },
+    {
+      "id": "gather_10k_resources",
+      "task": "Gather 10,000 of any resource",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Magic_logs"
+    },
+    {
+      "id": "kill_1000_monsters",
+      "task": "Kill 1,000 of any monster",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Dragon_scimitar"
+    },
+    {
+      "id": "herb_1000_potions",
+      "task": "Make 1,000 potions",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Herblore_icon"
+    },
+    {
+      "id": "prayer_dragon_bones_1000",
+      "task": "Offer 1,000 Dragon bones",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Prayer_icon"
+    },
+    {
+      "id": "slay_turael_100",
+      "task": "Complete 100 Slayer tasks",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Slayer_helmet"
+    },
+    {
+      "id": "slay_boss_task",
+      "task": "Complete a Boss Slayer task",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Konar_quo_Maten"
+    },
+    {
+      "id": "diary_task_200",
+      "task": "Complete 200 Achievement Diary tasks",
+      "category": "diaries",
+      "difficulty": "hard",
+      "icon": "Achievement_Diary"
+    },
+    {
+      "id": "bh_10_kills",
+      "task": "Get 10 Bounty Hunter kills",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Bounty_teleport_(tier_1)"
+    },
+    {
+      "id": "wildy_loot_5m",
+      "task": "Loot 5M worth in the Wilderness",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Looting_bag"
+    },
+    {
+      "id": "revs_100_kills",
+      "task": "Kill 100 Revenants",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Ancient_emblem"
+    },
+    {
+      "id": "nightmare_10",
+      "task": "Kill The Nightmare 10 times",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "The_Nightmare"
+    },
+    {
+      "id": "nex_5",
+      "task": "Kill Nex 5 times",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Nex"
+    },
+    {
+      "id": "phosani_5",
+      "task": "Kill Phosani's Nightmare 5 times",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Inquisitor's_mace"
+    },
+    {
+      "id": "get_fury",
+      "task": "Obtain an Amulet of fury",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Amulet_of_fury"
+    },
+    {
+      "id": "get_berserker_ring",
+      "task": "Obtain a Berserker ring",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Berserker_ring"
+    },
+    {
+      "id": "get_archers_ring",
+      "task": "Obtain an Archers ring",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Archers_ring"
+    },
+    {
+      "id": "get_seers_ring",
+      "task": "Obtain a Seers ring",
+      "category": "collection",
+      "difficulty": "medium",
+      "icon": "Seers_ring"
+    },
+    {
+      "id": "get_brimstone_ring",
+      "task": "Obtain a Brimstone ring",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Brimstone_ring"
+    },
+    {
+      "id": "sarachnis_30",
+      "task": "Kill Sarachnis 30 times",
+      "category": "pvm",
+      "difficulty": "easy",
+      "icon": "Sarachnis"
+    },
+    {
+      "id": "grotesque_15",
+      "task": "Kill Grotesque Guardians 15 times",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Noon"
+    },
+    {
+      "id": "dks_all_rings",
+      "task": "Obtain all 4 DKs rings",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Dagannoth_Rex"
+    },
+    {
+      "id": "skotizo_10",
+      "task": "Kill Skotizo 10 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Skotizo"
+    },
+    {
+      "id": "obor_15",
+      "task": "Kill Obor 15 times",
+      "category": "pvm",
+      "difficulty": "easy",
+      "icon": "Obor"
+    },
+    {
+      "id": "bryophyta_15",
+      "task": "Kill Bryophyta 15 times",
+      "category": "pvm",
+      "difficulty": "easy",
+      "icon": "Bryophyta"
+    },
+    {
+      "id": "hespori_20",
+      "task": "Kill Hespori 20 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Hespori"
+    },
+    {
+      "id": "mimic_5",
+      "task": "Kill The Mimic 5 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Mimic"
+    },
+    {
+      "id": "moons_5",
+      "task": "Complete Moons of Peril 5 times",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Eclipse_moon_helm"
+    },
+    {
+      "id": "colosseum_wave_8",
+      "task": "Reach Wave 8 in Fortis Colosseum",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Tonalztics_of_ralos"
+    },
+    {
+      "id": "colosseum_complete_1",
+      "task": "Complete the Fortis Colosseum",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Echo_crystal"
+    },
+    {
+      "id": "perilous_moons_unique",
+      "task": "Get any unique from Perilous Moons",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Eclipse_moon_helm"
+    },
+    {
+      "id": "toa_unique",
+      "task": "Get any unique from Tombs of Amascut",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Masori_mask"
+    },
+    {
+      "id": "cox_unique",
+      "task": "Get any unique from Chambers of Xeric",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Dragon_claws"
+    },
+    {
+      "id": "tob_unique",
+      "task": "Get any unique from Theatre of Blood",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Avernic_defender_hilt"
+    },
+    {
+      "id": "demonic_gorillas_100",
+      "task": "Kill 100 Demonic gorillas",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Demonic_gorilla"
+    },
+    {
+      "id": "rune_dragons_50",
+      "task": "Kill 50 Rune dragons",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Rune_dragon"
+    },
+    {
+      "id": "brutal_black_50",
+      "task": "Kill 50 Brutal black dragons",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Brutal_black_dragon"
+    },
+    {
+      "id": "wyrms_200",
+      "task": "Kill 200 Wyrms",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Wyrm"
+    },
+    {
+      "id": "drakes_150",
+      "task": "Kill 150 Drakes",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Drake"
+    },
+    {
+      "id": "hydras_100",
+      "task": "Kill 100 Hydras (non-boss)",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Hydra"
+    },
+    {
+      "id": "superior_slayer_10",
+      "task": "Kill 10 Superior Slayer monsters",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Eternal_gem"
+    },
+    {
+      "id": "smoke_devils_500",
+      "task": "Kill 500 Smoke devils",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Smoke_devil"
+    },
+    {
+      "id": "nechryael_400",
+      "task": "Kill 400 Nechryael",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Nechryael"
+    },
+    {
+      "id": "abyssal_demons_500",
+      "task": "Kill 500 Abyssal demons",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Abyssal_demon"
+    },
+    {
+      "id": "gargoyles_400",
+      "task": "Kill 400 Gargoyles",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Gargoyle"
+    },
+    {
+      "id": "kurask_400",
+      "task": "Kill 400 Kurask",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Kurask"
+    },
+    {
+      "id": "bloodvelds_500",
+      "task": "Kill 500 Bloodvelds",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Bloodveld"
+    },
+    {
+      "id": "hellhounds_500",
+      "task": "Kill 500 Hellhounds",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Hellhound"
+    },
+    {
+      "id": "black_demons_500",
+      "task": "Kill 500 Black demons",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Black_demon"
+    },
+    {
+      "id": "inferno_1",
+      "task": "Complete the Inferno",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Infernal_cape"
+    },
+    {
+      "id": "fight_caves_10",
+      "task": "Complete Fight Caves 10 times",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Fire_cape"
+    },
+    {
+      "id": "jad_pet",
+      "task": "Obtain TzRek-Jad pet",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "TzRek-Jad"
+    },
+    {
+      "id": "zuk_pet",
+      "task": "Obtain TzRek-Zuk pet",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "TzRek-Zuk"
+    },
+    {
+      "id": "any_boss_pet",
+      "task": "Obtain any boss pet",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "Pet_chaos_elemental"
+    },
+    {
+      "id": "any_skilling_pet",
+      "task": "Obtain any skilling pet",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "Heron"
+    },
+    {
+      "id": "chinchompas_2000",
+      "task": "Catch 2,000 Chinchompas",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Red_chinchompa"
+    },
+    {
+      "id": "birdhouses_100",
+      "task": "Complete 100 birdhouse runs",
+      "category": "skills",
+      "difficulty": "easy",
+      "icon": "Magic_birdhouse"
+    },
+    {
+      "id": "farm_runs_100",
+      "task": "Complete 100 farming runs",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Rake"
+    },
+    {
+      "id": "mahogany_homes_100",
+      "task": "Complete 100 Mahogany Homes contracts",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Saw"
+    },
+    {
+      "id": "aerial_fishing_500",
+      "task": "Catch 500 fish via Aerial Fishing",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "King_worm"
+    },
+    {
+      "id": "drift_net_50",
+      "task": "Complete 50 Drift net fishing sessions",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Drift_net"
+    },
+    {
+      "id": "blast_furnace_5000",
+      "task": "Smith 5,000 bars at Blast Furnace",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Steel_bar"
+    },
+    {
+      "id": "volcanic_mine_50",
+      "task": "Complete 50 Volcanic Mine games",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Volcanic_mine"
+    },
+    {
+      "id": "mlm_10000_ores",
+      "task": "Mine 10,000 ores in Motherlode Mine",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Golden_nugget"
+    },
+    {
+      "id": "zmi_5000_runes",
+      "task": "Craft 5,000 runes at ZMI altar",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Pure_essence"
+    },
+    {
+      "id": "gotr_100",
+      "task": "Complete 100 Guardians of the Rift games",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Abyssal_needle"
+    },
+    {
+      "id": "chompy_hunting_100",
+      "task": "Kill 100 Chompy birds",
+      "category": "skills",
+      "difficulty": "easy",
+      "icon": "Chompy_bird"
+    },
+    {
+      "id": "tears_guthix_50",
+      "task": "Play Tears of Guthix 50 times",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Tears_of_Guthix"
+    },
+    {
+      "id": "brimhaven_agility_50",
+      "task": "Complete 50 laps of Brimhaven Agility Arena",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Agility_arena_ticket"
+    },
+    {
+      "id": "rooftops_200",
+      "task": "Complete 200 rooftop laps (any course)",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Mark_of_grace"
+    },
+    {
+      "id": "marks_grace_500",
+      "task": "Collect 500 Marks of grace",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Mark_of_grace"
+    },
+    {
+      "id": "master_farmers_1000",
+      "task": "Pickpocket 1,000 Master Farmers",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Master_farmer"
+    },
+    {
+      "id": "knights_ardougne_2000",
+      "task": "Pickpocket 2,000 Ardougne Knights",
+      "category": "skills",
+      "difficulty": "medium",
+      "icon": "Ardougne_Knight"
+    },
+    {
+      "id": "pyramid_plunder_100",
+      "task": "Complete 100 Pyramid Plunder runs",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Pharaoh's_sceptre"
+    },
+    {
+      "id": "sorceress_garden_50",
+      "task": "Complete 50 Sorceress's Garden runs",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Sq'irk_juice"
+    },
+    {
+      "id": "blackjacking_5000",
+      "task": "Blackjack 5,000 NPCs",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Blackjack"
+    },
+    {
+      "id": "collect_100k_coins",
+      "task": "Collect 100k coins from any source",
+      "category": "collection",
+      "difficulty": "easy",
+      "icon": "Coins_10000"
+    },
+    {
+      "id": "flip_any_item_100",
+      "task": "Buy and sell any item 100 times",
+      "category": "collection",
+      "difficulty": "easy",
+      "icon": "Grand_Exchange"
+    },
+    {
+      "id": "angler_outfit_full",
+      "task": "Obtain Full Angler's Outfit",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Angler_hat"
+    },
+    {
+      "id": "pharaohs_sceptre",
+      "task": "Obtain 1 Pharaoh's Sceptre",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Pharaoh's_sceptre"
+    },
+    {
+      "id": "zulrah_unique",
+      "task": "Get any Zulrah unique drop",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Serpentine_helm"
+    },
+    {
+      "id": "kq_head",
+      "task": "Obtain Kalphite Queen head",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Kalphite_queen_head"
+    },
+    {
+      "id": "wintertodt_unique",
+      "task": "Get Wintertodt unique or 3 different Pyromancer pieces",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Pyromancer_outfit"
+    },
+    {
+      "id": "barrows_expensive",
+      "task": "Get any Barrows piece worth over 1M",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Ahrim's_robetop"
+    },
+    {
+      "id": "barbarian_assault_run",
+      "task": "Complete 1 full run of Barbarian Assault",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Fighter_torso"
+    },
+    {
+      "id": "gwd_unique",
+      "task": "Get any GWD unique (including shard)",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Armadyl_chestplate"
+    },
+    {
+      "id": "corp_unique",
+      "task": "Get Corp unique (including onyx bolts)",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Spectral_spirit_shield"
+    },
+    {
+      "id": "pest_control_300",
+      "task": "Obtain 300 Pest Control points",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Void_knight_top"
+    },
+    {
+      "id": "fire_cape_fresh",
+      "task": "Get a brand new Fire Cape",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Fire_cape"
+    },
+    {
+      "id": "dragon_defender",
+      "task": "Get a dragon defender drop",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Dragon_defender"
+    },
+    {
+      "id": "clue_100k_casket",
+      "task": "Open a clue casket worth over 100k",
+      "category": "clues",
+      "difficulty": "medium",
+      "icon": "Clue_scroll_(hard)"
+    },
+    {
+      "id": "cox_complete",
+      "task": "Complete the Chambers of Xeric",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Olmlet"
+    },
+    {
+      "id": "brimstone_keys_3",
+      "task": "Get 3 Brimstone keys",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Brimstone_key"
+    },
+    {
+      "id": "larrans_key",
+      "task": "Get 1 Larran's key",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Larran's_key"
+    },
+    {
+      "id": "champions_scroll",
+      "task": "Obtain any Champion's Scroll",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Champion's_scroll"
+    },
+    {
+      "id": "wildy_boss_unique",
+      "task": "Obtain any Wilderness Boss unique",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Venenatis_spiderling"
+    },
+    {
+      "id": "dks_ring",
+      "task": "Obtain any ring from DKS",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Berserker_ring"
+    },
+    {
+      "id": "any_pet",
+      "task": "Obtain any Skilling or Boss pet",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "Heron"
+    },
+    {
+      "id": "ecumenical_key",
+      "task": "Get an Ecumenical key",
+      "category": "pvm",
+      "difficulty": "easy",
+      "icon": "Ecumenical_key"
+    },
+    {
+      "id": "dragon_impling",
+      "task": "Find and catch a dragon or lucky impling",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Dragon_impling_jar"
+    },
+    {
+      "id": "marks_of_grace_10",
+      "task": "Get 10 Marks of Grace",
+      "category": "agility",
+      "difficulty": "easy",
+      "icon": "Mark_of_grace"
+    },
+    {
+      "id": "zulrah_speedrun",
+      "task": "Speedrun Zulrah (Base: Under 3:00)",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Zulrah",
+      "basePoints": 100,
+      "bonusTiers": [
+        {
+          "threshold": "Under 2:30",
+          "points": 50,
+          "requirementValue": 150
+        },
+        {
+          "threshold": "Under 2:00",
+          "points": 100,
+          "requirementValue": 120
+        },
+        {
+          "threshold": "Under 1:30",
+          "points": 200,
+          "requirementValue": 90
+        }
+      ]
+    },
+    {
+      "id": "vorkath_speedrun",
+      "task": "Speedrun Vorkath (Base: Under 2:30)",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Vorkath",
+      "basePoints": 100,
+      "bonusTiers": [
+        {
+          "threshold": "Under 2:00",
+          "points": 50,
+          "requirementValue": 120
+        },
+        {
+          "threshold": "Under 1:30",
+          "points": 100,
+          "requirementValue": 90
+        },
+        {
+          "threshold": "Under 1:00",
+          "points": 250,
+          "requirementValue": 60
+        }
+      ]
+    },
+    {
+      "id": "fire_cape_speedrun",
+      "task": "Get Fire Cape (Base: Under 60 min)",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Fire_cape",
+      "basePoints": 150,
+      "bonusTiers": [
+        {
+          "threshold": "Under 45 min",
+          "points": 75,
+          "requirementValue": 45
+        },
+        {
+          "threshold": "Under 35 min",
+          "points": 150,
+          "requirementValue": 35
+        }
+      ]
+    },
+    {
+      "id": "inferno_cape",
+      "task": "Obtain an Infernal Cape (Base: Complete)",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Infernal_cape",
+      "basePoints": 500,
+      "bonusTiers": [
+        {
+          "threshold": "Under 90 min",
+          "points": 200,
+          "requirementValue": 90
+        },
+        {
+          "threshold": "Under 70 min",
+          "points": 500,
+          "requirementValue": 70
+        }
+      ]
+    },
+    {
+      "id": "clue_scroll_master_5",
+      "task": "Complete 5 Master Clue Scrolls",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Clue_scroll_(master)"
+    },
+    {
+      "id": "tob_complete",
+      "task": "Complete the Theatre of Blood",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Lil'_zik"
+    },
+    {
+      "id": "gauntlet_complete",
+      "task": "Complete the Gauntlet (Normal or Corrupted)",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Youngllef"
+    },
+    {
+      "id": "corrupted_gauntlet_complete",
+      "task": "Complete the Corrupted Gauntlet",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Blade_of_saeldor"
+    },
+    {
+      "id": "hydra_unique",
+      "task": "Get any Alchemical Hydra unique",
+      "category": "slayer",
+      "difficulty": "extreme",
+      "icon": "Hydra's_claw"
+    },
+    {
+      "id": "nightmare_unique",
+      "task": "Get any Nightmare unique",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Inquisitor's_mace"
+    },
+    {
+      "id": "nex_unique",
+      "task": "Get any Nex unique",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Zaryte_crossbow"
+    },
+    {
+      "id": "monkey_backpack",
+      "task": "Obtain a Monkey Backpack",
+      "category": "minigames",
+      "difficulty": "hard",
+      "icon": "Monkey"
+    },
+    {
+      "id": "chompy_hat",
+      "task": "Obtain any Chompy bird hat",
+      "category": "minigames",
+      "difficulty": "medium",
+      "icon": "Chompy_chick"
+    },
+    {
+      "id": "crystal_tool",
+      "task": "Create any Crystal tool",
+      "category": "skills",
+      "difficulty": "hard",
+      "icon": "Crystal_pickaxe"
+    },
+    {
+      "id": "dragon_pickaxe",
+      "task": "Obtain a Dragon pickaxe",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Dragon_pickaxe"
+    },
+    {
+      "id": "abyssal_whip",
+      "task": "Get an Abyssal whip drop",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Abyssal_whip"
+    },
+    {
+      "id": "dragon_warhammer",
+      "task": "Get a Dragon warhammer drop",
+      "category": "slayer",
+      "difficulty": "extreme",
+      "icon": "Dragon_warhammer"
+    },
+    {
+      "id": "imbued_heart",
+      "task": "Get an Imbued heart drop",
+      "category": "slayer",
+      "difficulty": "extreme",
+      "icon": "Imbued_heart"
+    },
+    {
+      "id": "eternal_gem",
+      "task": "Get an Eternal gem",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Eternal_gem"
+    },
+    {
+      "id": "basilisk_jaw",
+      "task": "Get a Basilisk jaw",
+      "category": "slayer",
+      "difficulty": "hard",
+      "icon": "Basilisk_jaw"
+    },
+    {
+      "id": "occult_necklace",
+      "task": "Get an Occult necklace drop",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Occult_necklace"
+    },
+    {
+      "id": "berserker_ring",
+      "task": "Get a Berserker ring (i) - imbue it",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Berserker_ring_(i)"
+    },
+    {
+      "id": "granite_maul",
+      "task": "Get a Granite maul drop and ornament it",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Granite_maul"
+    },
+    {
+      "id": "black_mask",
+      "task": "Get a Black mask drop",
+      "category": "slayer",
+      "difficulty": "medium",
+      "icon": "Black_mask"
+    },
+    {
+      "id": "clue_elite_10",
+      "task": "Complete 10 Elite Clue Scrolls",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Clue_scroll_(elite)"
+    },
+    {
+      "id": "collection_log_50",
+      "task": "Unlock 50 unique Collection Log slots",
+      "category": "collection",
+      "difficulty": "hard",
+      "icon": "Collection_log"
+    },
+    {
+      "id": "collection_log_100",
+      "task": "Unlock 100 unique Collection Log slots (Base: 100)",
+      "category": "collection",
+      "difficulty": "extreme",
+      "icon": "Collection_log",
+      "basePoints": 200,
+      "bonusTiers": [
+        {
+          "threshold": "150 slots",
+          "points": 100,
+          "requirementValue": 150
+        },
+        {
+          "threshold": "200 slots",
+          "points": 200,
+          "requirementValue": 200
+        }
+      ]
+    },
+    {
+      "id": "quest_points_100",
+      "task": "Reach 100 Quest Points",
+      "category": "quests",
+      "difficulty": "easy",
+      "icon": "Quest_point_cape"
+    },
+    {
+      "id": "slayer_100k_xp",
+      "task": "Gain 100k Slayer XP (Base: 100k)",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Slayer_helmet",
+      "basePoints": 50,
+      "bonusTiers": [
+        {
+          "threshold": "250k XP",
+          "points": 50,
+          "requirementValue": 250000
+        },
+        {
+          "threshold": "500k XP",
+          "points": 100,
+          "requirementValue": 500000
+        },
+        {
+          "threshold": "1M XP",
+          "points": 200,
+          "requirementValue": 1000000
+        }
+      ]
+    },
+    {
+      "id": "any_spirit_shield",
+      "task": "Create any Spirit Shield",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Spectral_spirit_shield"
+    },
+    {
+      "id": "saradomin_sword",
+      "task": "Get a Saradomin sword",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Saradomin_sword"
+    },
+    {
+      "id": "armadyl_crossbow",
+      "task": "Get an Armadyl crossbow",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Armadyl_crossbow"
+    },
+    {
+      "id": "bandos_chestplate",
+      "task": "Get a Bandos chestplate",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Bandos_chestplate"
+    },
+    {
+      "id": "zenyte_jewelry",
+      "task": "Create any Zenyte jewelry",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Necklace_of_anguish"
+    },
+    {
+      "id": "dragon_crossbow",
+      "task": "Get or create a Dragon crossbow",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Dragon_crossbow"
+    },
+    {
+      "id": "dinh_bulwark",
+      "task": "Get Dinh's bulwark",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Dinh's_bulwark"
+    },
+    {
+      "id": "twisted_bow",
+      "task": "Get a Twisted bow",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Twisted_bow"
+    },
+    {
+      "id": "scythe_of_vitur",
+      "task": "Get a Scythe of vitur",
+      "category": "raids",
+      "difficulty": "extreme",
+      "icon": "Scythe_of_vitur"
+    },
+    {
+      "id": "pet_drop_any",
+      "task": "Get any pet drop",
+      "category": "pets",
+      "difficulty": "extreme",
+      "icon": "Pet"
+    },
+    {
+      "id": "boss_kc_500",
+      "task": "Reach 500 KC on any boss (Base: 500)",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Vorki",
+      "basePoints": 100,
+      "bonusTiers": [
+        {
+          "threshold": "1000 KC",
+          "points": 100,
+          "requirementValue": 1000
+        },
+        {
+          "threshold": "2000 KC",
+          "points": 250,
+          "requirementValue": 2000
+        }
+      ]
+    },
+    {
+      "id": "clue_step_unique",
+      "task": "Get any unique from a clue scroll",
+      "category": "clues",
+      "difficulty": "hard",
+      "icon": "Third_age_platebody"
+    },
+    {
+      "id": "dragon_axe",
+      "task": "Get a Dragon axe",
+      "category": "pvm",
+      "difficulty": "medium",
+      "icon": "Dragon_axe"
+    },
+    {
+      "id": "granite_boots",
+      "task": "Get Granite boots",
+      "category": "slayer",
+      "difficulty": "easy",
+      "icon": "Granite_boots"
+    },
+    {
+      "id": "neitiznot_faceguard",
+      "task": "Get Neitiznot faceguard",
+      "category": "pvm",
+      "difficulty": "hard",
+      "icon": "Neitiznot_faceguard"
+    },
+    {
+      "id": "dragon_full_helm",
+      "task": "Get Dragon full helm",
+      "category": "pvm",
+      "difficulty": "extreme",
+      "icon": "Dragon_full_helm"
+    },
+    {
+      "id": "primordial_boots",
+      "task": "Create Primordial boots",
+      "category": "slayer",
+      "difficulty": "extreme",
+      "icon": "Primordial_boots"
+    },
+    {
+      "id": "pegasian_boots",
+      "task": "Create Pegasian boots",
+      "category": "slayer",
+      "difficulty": "extreme",
+      "icon": "Pegasian_boots"
+    }
+  ]
+}

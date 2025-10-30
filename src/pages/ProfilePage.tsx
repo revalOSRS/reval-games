@@ -1,361 +1,347 @@
-import { useState } from 'react'
-import { useNavigate } from '@tanstack/react-router'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useProfile } from '@/hooks/useProfile'
 import { ApiError } from '@/api/client'
+import { getDiscordAvatarUrl, getDiscordInitials } from '@/lib/discord'
 
-function getRankName(totalScore: number): { name: string; color: string } {
-  if (totalScore >= 5000) return { name: 'Legend', color: 'bg-gradient-to-r from-yellow-400 to-orange-500' }
-  if (totalScore >= 2500) return { name: 'Master', color: 'bg-gradient-to-r from-purple-500 to-pink-500' }
-  if (totalScore >= 1000) return { name: 'Expert', color: 'bg-gradient-to-r from-blue-500 to-cyan-500' }
-  if (totalScore >= 500) return { name: 'Veteran', color: 'bg-gradient-to-r from-green-500 to-emerald-500' }
-  if (totalScore >= 100) return { name: 'Member', color: 'bg-gradient-to-r from-gray-500 to-slate-500' }
-  return { name: 'Recruit', color: 'bg-gray-400' }
+// Helper function to safely convert to number
+const safeNumber = (value: any): number => {
+  if (typeof value === 'number') return value
+  if (typeof value === 'string') return parseFloat(value) || 0
+  return 0
 }
 
-function safeNumber(value: any, defaultValue: number = 0): number {
-  const num = Number(value)
-  return isNaN(num) ? defaultValue : num
+function getRankInfo(womRank?: string): { name: string; color: string } {
+  const rankMap: Record<string, { name: string; color: string }> = {
+    owner: { name: 'Owner', color: 'from-red-500 to-orange-500' },
+    deputy_owner: { name: 'Deputy Owner', color: 'from-orange-500 to-yellow-500' },
+    supervisor: { name: 'Supervisor', color: 'from-purple-500 to-pink-500' },
+    coordinator: { name: 'Coordinator', color: 'from-blue-500 to-cyan-500' },
+    overseer: { name: 'Overseer', color: 'from-green-500 to-emerald-500' },
+    moderator: { name: 'Moderator', color: 'from-indigo-500 to-purple-500' },
+    corporal: { name: 'Corporal', color: 'from-cyan-500 to-blue-500' },
+    recruit: { name: 'Recruit', color: 'from-gray-500 to-slate-500' },
+    member: { name: 'Member', color: 'from-gray-400 to-gray-600' },
+  }
+  
+  if (!womRank) return { name: 'Member', color: 'from-gray-400 to-gray-600' }
+  
+  return rankMap[womRank.toLowerCase()] || { name: womRank, color: 'from-gray-400 to-gray-600' }
 }
 
 function formatNumber(num: any): string {
-  const n = safeNumber(num, 0)
+  const n = safeNumber(num)
   if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`
   if (n >= 1000) return `${(n / 1000).toFixed(1)}K`
-  return n.toString()
+  return n.toLocaleString()
 }
 
-function formatGP(amount: any): string {
-  const a = safeNumber(amount, 0)
-  if (a >= 1000000000) return `${(a / 1000000000).toFixed(2)}B gp`
-  if (a >= 1000000) return `${(a / 1000000).toFixed(1)}M gp`
-  if (a >= 1000) return `${(a / 1000).toFixed(1)}K gp`
-  return `${a} gp`
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
+
+function getErrorMessage(error: Error): string {
+  if (error instanceof ApiError) {
+    return error.message
+  }
+  return error.message || 'An error occurred'
 }
 
 export default function ProfilePage() {
-  const navigate = useNavigate()
-  const { data: profileData, isLoading, error, refetch } = useProfile()
-  const [expandedAccount, setExpandedAccount] = useState<number | null>(null)
-
-  const getErrorMessage = (err: Error): string => {
-    if (err instanceof ApiError) {
-      return err.message
-    }
-    if (err.message.includes('Kasutaja andmed puuduvad')) {
-      return err.message
-    }
-    return 'Ühenduse viga. Palun proovi hiljem uuesti.'
-  }
+  const { data, isLoading, error, refetch } = useProfile()
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-4xl">
-          <CardContent className="p-8 text-center">
-            <div className="flex flex-col items-center gap-4">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              <p className="text-lg text-muted-foreground">Laadin profiili...</p>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen p-4 md:p-6">
+        <div className="max-w-6xl mx-auto space-y-6">
+          {/* Header Card Skeleton */}
+          <Card className="border-border/40">
+            <CardContent className="p-6">
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-4">
+                  <Skeleton className="w-16 h-16 rounded-full" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-7 w-48" />
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-6 w-20 mt-2" />
+                  </div>
+                </div>
+                <Skeleton className="h-9 w-32 rounded-md" />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Stats Grid Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="border-border/40">
+                <CardHeader className="pb-3">
+                  <Skeleton className="h-3 w-24" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="h-9 w-20" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* OSRS Accounts Skeleton */}
+          <Card className="border-border/40">
+            <CardHeader>
+              <Skeleton className="h-5 w-32" />
+              <Skeleton className="h-3 w-40 mt-1" />
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {[1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between p-3 rounded-md border border-border/40 bg-card/30"
+                >
+                  <div className="space-y-2 flex-1">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-3 w-48" />
+                  </div>
+                  <Skeleton className="h-6 w-16 rounded-full" />
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Recent Activity Skeleton */}
+          <Card className="border-border/40">
+            <CardHeader>
+              <Skeleton className="h-5 w-32" />
+              <Skeleton className="h-3 w-48 mt-1" />
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between p-3 rounded-md border border-border/40 bg-card/30"
+                >
+                  <div className="space-y-2 flex-1">
+                    <Skeleton className="h-4 w-40" />
+                    <Skeleton className="h-3 w-24" />
+                  </div>
+                  <Skeleton className="h-4 w-12" />
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-4xl">
-          <CardContent className="p-8 space-y-4">
-            <p className="text-lg text-destructive text-center">
-              {getErrorMessage(error)}
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button variant="outline" onClick={() => navigate({ to: '/menu' })}>
-                Tagasi menüüsse
-              </Button>
-              <Button onClick={() => refetch()}>
-                Proovi uuesti
-              </Button>
-            </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <Card className="max-w-md w-full mx-4">
+          <CardHeader>
+            <CardTitle className="text-red-500">Error Loading Profile</CardTitle>
+            <CardDescription>{getErrorMessage(error as Error)}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={() => refetch()} className="w-full">
+              Try Again
+            </Button>
           </CardContent>
         </Card>
       </div>
     )
   }
 
-  if (!profileData) return null
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Card className="max-w-md w-full mx-4">
+          <CardHeader>
+            <CardTitle>Profile Not Found</CardTitle>
+            <CardDescription>Profile data is not available</CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    )
+  }
 
-  const { member, osrs_accounts = [], donations, wom } = profileData
-  
-  // Calculate total score (EHP + EHB) across all accounts with safe number conversion
-  const totalScore = osrs_accounts.reduce((sum, acc) => {
-    return sum + safeNumber(acc.ehp, 0) + safeNumber(acc.ehb, 0)
-  }, 0)
-  const rank = getRankName(totalScore)
-  
-  // Find best account
-  const bestAccount = osrs_accounts.length > 0 ? osrs_accounts.reduce((best, acc) => {
-    const accScore = safeNumber(acc.ehp, 0) + safeNumber(acc.ehb, 0)
-    const bestScore = best ? safeNumber(best.ehp, 0) + safeNumber(best.ehb, 0) : 0
-    return accScore > bestScore ? acc : best
-  }, osrs_accounts[0]) : null
+  const { member, osrs_accounts, donations, token_movements } = data
+  const primaryAccount = osrs_accounts.find(acc => acc.is_primary) || osrs_accounts[0]
+  const rank = getRankInfo(primaryAccount?.wom_rank)
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-6xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl font-bold text-foreground">Mängija Profiil</h1>
-            <p className="text-muted-foreground mt-1">Sinu RuneScape mängija detailid</p>
-          </div>
-          <Button variant="outline" onClick={() => navigate({ to: '/menu' })}>
-            Tagasi menüüsse
-          </Button>
-        </div>
-
-        {/* Discord Info Card */}
-        <Card className="border-2">
-          <CardHeader>
+        {/* Header Card */}
+        <Card className="border-border/40">
+          <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-2xl font-bold text-primary-foreground">
-                  {member.discord_tag.charAt(0).toUpperCase()}
-                </div>
-                <div>
-                  <CardTitle className="text-2xl">{member.discord_tag}</CardTitle>
-                  <CardDescription className="mt-1">
-                    Liikme kood: #{member.member_code}
-                  </CardDescription>
-                </div>
-              </div>
-              <div className="flex flex-col items-end gap-2">
-                <div className={`${rank.color} text-white px-4 py-2 rounded-lg font-bold text-lg shadow-lg`}>
-                  {rank.name}
-                </div>
-                <Badge variant={member.is_active ? "default" : "secondary"}>
-                  {member.is_active ? 'Aktiivne' : 'Mitteaktiivne'}
-                </Badge>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-primary">{osrs_accounts.length}</p>
-                <p className="text-sm text-muted-foreground mt-1">OSRS Kontod</p>
-              </div>
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-green-600">{safeNumber(totalScore).toFixed(1)}</p>
-                <p className="text-sm text-muted-foreground mt-1">Kogu Skoor</p>
-              </div>
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-blue-600">{osrs_accounts.reduce((sum, acc) => sum + safeNumber(acc.ehp, 0), 0).toFixed(1)}</p>
-                <p className="text-sm text-muted-foreground mt-1">Kogu EHP</p>
-              </div>
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-purple-600">{osrs_accounts.reduce((sum, acc) => sum + safeNumber(acc.ehb, 0), 0).toFixed(1)}</p>
-                <p className="text-sm text-muted-foreground mt-1">Kogu EHB</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* OSRS Accounts */}
-        <Card>
-          <CardHeader>
-            <CardTitle>RuneScape Kontod</CardTitle>
-            <CardDescription>Sinu ühendatud OSRS kontod ja statistika</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {osrs_accounts.length === 0 ? (
-              <p className="text-center text-muted-foreground py-8">Kontosid ei leitud</p>
-            ) : (
-              osrs_accounts.map((account) => (
-                <div key={account.id} className="border rounded-lg overflow-hidden">
-                  <div
-                    className="p-4 hover:bg-muted/50 cursor-pointer transition-colors"
-                    onClick={() => setExpandedAccount(expandedAccount === account.id ? null : account.id)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">
-                          {account.osrs_nickname.charAt(0).toUpperCase()}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <p className="font-semibold text-lg">{account.osrs_nickname}</p>
-                            {account.is_primary && (
-                              <Badge variant="default" className="text-xs">Peamine</Badge>
-                            )}
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            EHP: {safeNumber(account.ehp).toFixed(1)} • EHB: {safeNumber(account.ehb).toFixed(1)} • Skoor: {(safeNumber(account.ehp) + safeNumber(account.ehb)).toFixed(1)}
-                          </p>
-                        </div>
-                      </div>
-                      <svg
-                        className={`w-5 h-5 transition-transform ${expandedAccount === account.id ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
+                {member.discord_avatar ? (
+                  <img
+                    src={getDiscordAvatarUrl(member.discord_id, member.discord_avatar, 96)}
+                    alt={member.discord_tag}
+                    className="w-16 h-16 rounded-full border border-border/60"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary">
+                    {getDiscordInitials(member.discord_tag)}
                   </div>
-
-                  {expandedAccount === account.id && (
-                    <div className="px-4 pb-4 pt-2 border-t bg-muted/20">
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                        <div className="bg-background p-3 rounded border">
-                          <p className="text-xs text-muted-foreground">Efficient Hours (PvM)</p>
-                          <p className="text-xl font-bold text-purple-600">{safeNumber(account.ehb).toFixed(2)}</p>
-                        </div>
-                        <div className="bg-background p-3 rounded border">
-                          <p className="text-xs text-muted-foreground">Efficient Hours (Skilling)</p>
-                          <p className="text-xl font-bold text-blue-600">{safeNumber(account.ehp).toFixed(2)}</p>
-                        </div>
-                        <div className="bg-background p-3 rounded border">
-                          <p className="text-xs text-muted-foreground">Loodud</p>
-                          <p className="text-sm font-semibold">{new Date(account.created_at).toLocaleDateString('et-EE')}</p>
-                        </div>
-                      </div>
-
-                      {bestAccount && account.id === bestAccount.id && wom?.player && (
-                        <div className="mt-4 p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg border border-primary/20">
-                          <p className="text-sm font-semibold text-primary mb-2">🏆 WiseOldMan Stats</p>
-                          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
-                            <div>
-                              <p className="text-muted-foreground">Total XP</p>
-                              <p className="font-bold">{formatNumber(wom.player.exp)}</p>
-                            </div>
-                            <div>
-                              <p className="text-muted-foreground">Account Type</p>
-                              <p className="font-bold capitalize">{wom.player.type || 'N/A'}</p>
-                            </div>
-                            <div>
-                              <p className="text-muted-foreground">Build</p>
-                              <p className="font-bold capitalize">{wom.player.build || 'N/A'}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                )}
+                <div>
+                  <h1 className="text-2xl font-semibold">{member.discord_tag}</h1>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Member #{member.member_code}
+                  </p>
+                  <Badge variant={member.is_active ? "default" : "secondary"} className="mt-2">
+                    {member.is_active ? 'Active' : 'Inactive'}
+                  </Badge>
                 </div>
-              ))
-            )}
+              </div>
+              <div className={`bg-gradient-to-r ${rank.color} text-white px-4 py-2 rounded-md font-semibold text-sm shadow-sm`}>
+                {rank.name}
+              </div>
+            </div>
           </CardContent>
         </Card>
 
-        {/* Donations & Achievements Row */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Donations */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Annetused</CardTitle>
-              <CardDescription>Sinu clan cofferisse tehtud annetused</CardDescription>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="border-border/40">
+            <CardHeader className="pb-3">
+              <CardDescription className="text-xs">Token Balance</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <p className="text-sm text-muted-foreground">Kokku kinnitatud</p>
-                  <p className="text-2xl font-bold text-green-600">{formatGP(donations?.total_approved)}</p>
-                </div>
-                {safeNumber(donations?.total_pending) > 0 && (
-                  <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                    <p className="text-sm text-muted-foreground">Ootel</p>
-                    <p className="text-2xl font-bold text-yellow-600">{formatGP(donations.total_pending)}</p>
-                  </div>
-                )}
-                {donations?.recent?.length > 0 && (
-                  <div className="space-y-2">
-                    <Separator />
-                    <p className="text-sm font-semibold">Hiljutised annetused</p>
-                    {donations.recent.slice(0, 3).map((donation) => (
-                      <div key={donation.id} className="flex justify-between items-center text-sm">
-                        <span className="text-muted-foreground">
-                          {new Date(donation.created_at).toLocaleDateString('et-EE')}
-                        </span>
-                        <span className="font-semibold">{formatGP(donation.amount)}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <div className="text-3xl font-bold text-primary">
+                {safeNumber(member.token_balance).toLocaleString()}
               </div>
             </CardContent>
           </Card>
 
-          {/* WOM Achievements */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Saavutused</CardTitle>
-              <CardDescription>Hiljutised WiseOldMan saavutused</CardDescription>
+          <Card className="border-border/40">
+            <CardHeader className="pb-3">
+              <CardDescription className="text-xs">OSRS Accounts</CardDescription>
             </CardHeader>
             <CardContent>
-              {!wom?.achievements || wom.achievements.length === 0 ? (
-                <p className="text-center text-muted-foreground py-8">Saavutusi ei leitud</p>
-              ) : (
-                <div className="space-y-2">
-                  {wom.achievements.slice(0, 5).map((achievement, idx) => (
-                    <div key={idx} className="flex items-center gap-3 p-2 hover:bg-muted rounded-lg transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        🏆
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-sm">{achievement.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {new Date(achievement.createdAt).toLocaleDateString('et-EE')}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <div className="text-3xl font-bold">
+                {osrs_accounts?.length || 0}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/40">
+            <CardHeader className="pb-3">
+              <CardDescription className="text-xs">Total Donated</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-green-500">
+                {formatNumber(donations?.total_approved || 0)}M
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Weekly Gains */}
-        {wom?.gains && (
-          <Card>
+        {/* OSRS Accounts */}
+        {osrs_accounts && osrs_accounts.length > 0 && (
+          <Card className="border-border/40">
             <CardHeader>
-              <CardTitle>Nädalased Võidud</CardTitle>
-              <CardDescription>Sinu progress viimase nädala jooksul</CardDescription>
+              <CardTitle className="text-lg">OSRS Accounts</CardTitle>
+              <CardDescription className="text-xs">Your linked accounts</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-                  <p className="text-xl font-bold text-green-600">
-                    +{safeNumber(wom.gains.data?.computed?.ehp?.gained).toFixed(2)}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">EHP</p>
+            <CardContent className="space-y-2">
+              {osrs_accounts.map((account) => (
+                <div
+                  key={account.id}
+                  className="flex items-center justify-between p-3 rounded-md border border-border/40 bg-card/30"
+                >
+                  <div>
+                    <p className="text-sm font-medium">
+                      {account.osrs_nickname}
+                      {account.is_primary && <span className="ml-2 text-yellow-500">⭐</span>}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      EHP: {safeNumber(account.ehp).toFixed(1)} • EHB: {safeNumber(account.ehb).toFixed(1)}
+                    </p>
+                  </div>
+                  {account.wom_rank && (
+                    <Badge variant="outline" className="text-xs">
+                      {getRankInfo(account.wom_rank).name}
+                    </Badge>
+                  )}
                 </div>
-                <div className="text-center p-4 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-                  <p className="text-xl font-bold text-purple-600">
-                    +{safeNumber(wom.gains.data?.computed?.ehb?.gained).toFixed(2)}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">EHB</p>
+              ))}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Token Movements */}
+        {token_movements && token_movements.length > 0 && (
+          <Card className="border-border/40">
+            <CardHeader>
+              <CardTitle className="text-lg">Recent Activity</CardTitle>
+              <CardDescription className="text-xs">Your latest token movements</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {token_movements.slice(0, 5).map((movement) => (
+                <div
+                  key={movement.id}
+                  className="flex items-center justify-between p-3 rounded-md border border-border/40 bg-card/30"
+                >
+                  <div>
+                    <p className="text-sm font-medium">{movement.description}</p>
+                    <p className="text-xs text-muted-foreground">{formatDate(movement.created_at)}</p>
+                  </div>
+                  <div className={`text-sm font-semibold ${
+                    movement.amount > 0 ? 'text-green-500' : 'text-red-500'
+                  }`}>
+                    {movement.amount > 0 ? '+' : ''}
+                    {movement.amount}
+                  </div>
                 </div>
-                <div className="text-center p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                  <p className="text-xl font-bold text-blue-600">
-                    +{formatNumber(wom.gains.data?.skills?.overall?.gained || 0)}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">XP</p>
+              ))}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Donations */}
+        {donations?.recent && donations.recent.length > 0 && (
+          <Card className="border-border/40">
+            <CardHeader>
+              <CardTitle className="text-lg">Recent Donations</CardTitle>
+              <CardDescription className="text-xs">
+                Total Approved: {formatNumber(donations?.total_approved || 0)}M GP
+                {donations?.total_pending > 0 && ` • Pending: ${formatNumber(donations.total_pending)}M GP`}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {donations.recent.map((donation) => (
+                <div
+                  key={donation.id}
+                  className="flex items-center justify-between p-3 rounded-md border border-border/40 bg-card/30"
+                >
+                  <div>
+                    <p className="text-sm font-medium">{formatNumber(donation.amount)}M GP</p>
+                    <p className="text-xs text-muted-foreground">
+                      {donation.submitted_at ? formatDate(donation.submitted_at) : formatDate(donation.created_at)}
+                    </p>
+                  </div>
+                  <Badge
+                    variant={
+                      donation.status === 'approved' ? 'default' :
+                      donation.status === 'pending' ? 'secondary' :
+                      'destructive'
+                    }
+                    className="text-xs"
+                  >
+                    {donation.status}
+                  </Badge>
                 </div>
-                <div className="text-center p-4 bg-orange-500/10 border border-orange-500/20 rounded-lg">
-                  <p className="text-xl font-bold text-orange-600">
-                    +{safeNumber(Object.values(wom.gains.data?.bosses || {}).reduce((sum: number, boss: any) => sum + safeNumber(boss?.gained, 0), 0))}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">Boss KC</p>
-                </div>
-              </div>
+              ))}
             </CardContent>
           </Card>
         )}

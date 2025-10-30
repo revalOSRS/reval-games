@@ -1,0 +1,486 @@
+{
+  "buffs": [
+    {
+      "id": "buff_double_points",
+      "name": "Double Points",
+      "description": "This tile awards 2x points when completed",
+      "type": "buff",
+      "icon": "Clue_scroll_(elite)",
+      "duration": null
+    },
+    {
+      "id": "buff_bonus_life",
+      "name": "Bonus Tile Attempt",
+      "description": "If this tile fails verification, you get one retry",
+      "type": "buff",
+      "icon": "Ring_of_life",
+      "duration": null
+    },
+    {
+      "id": "buff_quick_complete",
+      "name": "Quick Complete",
+      "description": "This tile counts as completed 24 hours earlier than actual time",
+      "type": "buff",
+      "icon": "Stamina_potion(4)",
+      "duration": null
+    },
+    {
+      "id": "buff_chain_reaction",
+      "name": "Chain Reaction",
+      "description": "Completing this tile unlocks all adjacent tiles immediately",
+      "type": "buff",
+      "icon": "Experience_lamp",
+      "duration": null
+    },
+    {
+      "id": "buff_steal_protection",
+      "name": "Steal Shield",
+      "description": "This tile cannot be stolen by the enemy team",
+      "type": "buff",
+      "icon": "Elysian_spirit_shield",
+      "duration": null
+    },
+    {
+      "id": "buff_reveal_enemy",
+      "name": "Enemy Radar",
+      "description": "Completing this reveals 3 random enemy ship locations",
+      "type": "buff",
+      "icon": "Clue_scroll_(master)",
+      "duration": null
+    },
+    {
+      "id": "buff_triple_points",
+      "name": "Triple Points",
+      "description": "This tile awards 3x points when completed",
+      "type": "buff",
+      "icon": "Pet_rock",
+      "duration": null
+    },
+    {
+      "id": "buff_bomb_adjacent",
+      "name": "Area Bomb",
+      "description": "Completing this also damages all adjacent enemy tiles",
+      "type": "buff",
+      "icon": "Barrows_totem",
+      "duration": null
+    },
+    {
+      "id": "buff_team_boost",
+      "name": "Team Rally",
+      "description": "Next 3 tiles completed by ANY team member give +50% points",
+      "type": "buff",
+      "icon": "Super_combat_potion(4)",
+      "duration": null
+    },
+    {
+      "id": "buff_ship_armor",
+      "name": "Reinforced Ship",
+      "description": "This ship segment takes 2 hits to destroy instead of 1",
+      "type": "buff",
+      "icon": "Bandos_chestplate",
+      "duration": null
+    },
+    {
+      "id": "buff_wild_card",
+      "name": "Wild Card",
+      "description": "Can be substituted for any other tile on the board",
+      "type": "buff",
+      "icon": "Ring_of_wealth",
+      "duration": null
+    },
+    {
+      "id": "buff_progress_boost",
+      "name": "Progress Accelerator",
+      "description": "All team tile progress counts as 1.5x for the next 6 hours",
+      "type": "buff",
+      "icon": "Ancient_staff",
+      "duration": 6
+    },
+    {
+      "id": "buff_vision_expand",
+      "name": "Extended Vision",
+      "description": "Can see 2-tile radius around your completed tiles",
+      "type": "buff",
+      "icon": "Ring_of_recoil",
+      "duration": 12
+    },
+    {
+      "id": "buff_bomb_immunity",
+      "name": "Bomb Shield",
+      "description": "Next 2 enemy bombs miss your ships",
+      "type": "buff",
+      "icon": "Prayer_potion(4)",
+      "duration": null
+    },
+    {
+      "id": "buff_point_bank",
+      "name": "Point Storage",
+      "description": "Store up to 500 bonus points that can't be stolen",
+      "type": "buff",
+      "icon": "Death_rune",
+      "duration": null
+    },
+    {
+      "id": "buff_rapid_fire",
+      "name": "Rapid Fire",
+      "description": "Team can attempt 2 tiles simultaneously for 12 hours",
+      "type": "buff",
+      "icon": "Abyssal_whip",
+      "duration": 12
+    },
+    {
+      "id": "buff_critical_hit",
+      "name": "Critical Strike",
+      "description": "Next bomb destroys the entire enemy ship (all segments)",
+      "type": "buff",
+      "icon": "Dragon_claws",
+      "duration": null
+    },
+    {
+      "id": "buff_time_freeze",
+      "name": "Time Freeze",
+      "description": "Enemy team's progress frozen for 2 hours after you complete this",
+      "type": "buff",
+      "icon": "Ice_barrage",
+      "duration": null
+    },
+    {
+      "id": "buff_perfect_shot",
+      "name": "Perfect Accuracy",
+      "description": "Next 5 bombs automatically hit enemy ships",
+      "type": "buff",
+      "icon": "Ranging_potion(4)",
+      "duration": null
+    },
+    {
+      "id": "buff_resurrection",
+      "name": "Ship Repair",
+      "description": "Restore one destroyed ship segment",
+      "type": "buff",
+      "icon": "Saradomin_brew(4)",
+      "duration": null
+    },
+    {
+      "id": "buff_spy_drone",
+      "name": "Spy Network",
+      "description": "See enemy team's next 3 tile targets",
+      "type": "buff",
+      "icon": "Mystic_hat",
+      "duration": 4
+    },
+    {
+      "id": "buff_combo_multiplier",
+      "name": "Combo Chain",
+      "description": "Each consecutive tile increases points by +25% (max 200%)",
+      "type": "buff",
+      "icon": "Amulet_of_fury",
+      "duration": 8
+    },
+    {
+      "id": "buff_treasure_hunt",
+      "name": "Hidden Treasure",
+      "description": "Random chance to find bonus 100-500 points on any tile",
+      "type": "buff",
+      "icon": "Casket",
+      "duration": 24
+    },
+    {
+      "id": "buff_defensive_wall",
+      "name": "Defensive Barrier",
+      "description": "Create a 3-tile shield around your ships",
+      "type": "buff",
+      "icon": "Dragon_defender",
+      "duration": 6
+    },
+    {
+      "id": "buff_point_steal",
+      "name": "Pirate's Fortune",
+      "description": "Steal 10% of enemy team's points when completing this tile",
+      "type": "buff",
+      "icon": "Coins_10000",
+      "duration": null
+    },
+    {
+      "id": "buff_tactical_nuke",
+      "name": "Tactical Strike",
+      "description": "Destroy a 3x3 grid area on enemy board",
+      "type": "buff",
+      "icon": "Toxic_staff_of_the_dead",
+      "duration": null
+    },
+    {
+      "id": "buff_lucky_streak",
+      "name": "Lucky Streak",
+      "description": "25% chance each tile gives double rewards",
+      "type": "buff",
+      "icon": "Ring_of_wealth_(i)",
+      "duration": 12
+    },
+    {
+      "id": "buff_instant_complete",
+      "name": "Auto-Complete",
+      "description": "This tile is instantly completed (still needs verification)",
+      "type": "buff",
+      "icon": "Magic_essence",
+      "duration": null
+    },
+    {
+      "id": "buff_ship_movement",
+      "name": "Ship Relocation",
+      "description": "Move one of your ships to a new location",
+      "type": "buff",
+      "icon": "Ancient_staff",
+      "duration": null
+    },
+    {
+      "id": "buff_shared_progress",
+      "name": "Team Synergy",
+      "description": "All teammates' progress on any tile counts toward each other",
+      "type": "buff",
+      "icon": "Zamorak_monk_top",
+      "duration": 6
+    }
+  ],
+  "debuffs": [
+    {
+      "id": "debuff_half_points",
+      "name": "Point Penalty",
+      "description": "This tile only awards 50% points",
+      "type": "debuff",
+      "icon": "Poison",
+      "duration": null
+    },
+    {
+      "id": "debuff_time_lock",
+      "name": "Time Lock",
+      "description": "Must wait 48 hours after claiming before completion counts",
+      "type": "debuff",
+      "icon": "Smite",
+      "duration": null
+    },
+    {
+      "id": "debuff_verification_double",
+      "name": "Extra Verification",
+      "description": "This tile requires 2 screenshots for proof instead of 1",
+      "type": "debuff",
+      "icon": "Bronze_dagger",
+      "duration": null
+    },
+    {
+      "id": "debuff_random_tile",
+      "name": "Mystery Task",
+      "description": "Tile task is hidden until claimed by team",
+      "type": "debuff",
+      "icon": "Casket",
+      "duration": null
+    },
+    {
+      "id": "debuff_point_drain",
+      "name": "Point Leak",
+      "description": "Lose 10 points per hour until this tile is completed",
+      "type": "debuff",
+      "icon": "Bronze_pickaxe",
+      "duration": null
+    },
+    {
+      "id": "debuff_steal_vulnerability",
+      "name": "Exposed Position",
+      "description": "Enemy team can steal this tile even after completion",
+      "type": "debuff",
+      "icon": "Bank_key",
+      "duration": null
+    },
+    {
+      "id": "debuff_spread_damage",
+      "name": "Explosive Tile",
+      "description": "If enemy bombs this, 2 adjacent friendly tiles also take damage",
+      "type": "debuff",
+      "icon": "Venom",
+      "duration": null
+    },
+    {
+      "id": "debuff_reveal_ships",
+      "name": "Signal Flare",
+      "description": "Completing this reveals 2 of your ship locations to enemy",
+      "type": "debuff",
+      "icon": "Teleblock",
+      "duration": null
+    },
+    {
+      "id": "debuff_no_points",
+      "name": "Worthless Tile",
+      "description": "This tile awards 0 points but must be completed for ship safety",
+      "type": "debuff",
+      "icon": "Skull",
+      "duration": null
+    },
+    {
+      "id": "debuff_double_requirement",
+      "name": "Enhanced Difficulty",
+      "description": "Must complete the task twice to count",
+      "type": "debuff",
+      "icon": "Broken_arrow",
+      "duration": null
+    },
+    {
+      "id": "debuff_team_split",
+      "name": "Solo Mission",
+      "description": "Only ONE team member can work on this tile",
+      "type": "debuff",
+      "icon": "Wilderness_sword_4",
+      "duration": null
+    },
+    {
+      "id": "debuff_time_bomb",
+      "name": "Time Bomb",
+      "description": "Must complete within 24 hours or lose 200 points",
+      "type": "debuff",
+      "icon": "Boots_of_stone",
+      "duration": null
+    },
+    {
+      "id": "debuff_chain_lock",
+      "name": "Locked Chain",
+      "description": "Must complete 3 other tiles before this unlocks",
+      "type": "debuff",
+      "icon": "Bronze_full_helm",
+      "duration": null
+    },
+    {
+      "id": "debuff_cursed_tile",
+      "name": "Cursed Ground",
+      "description": "Completing this gives enemy team +100 points",
+      "type": "debuff",
+      "icon": "Poison_karambwan",
+      "duration": null
+    },
+    {
+      "id": "debuff_ship_beacon",
+      "name": "Tracking Beacon",
+      "description": "Enemy can see this ship segment's location permanently",
+      "type": "debuff",
+      "icon": "Ghostly_robe_bottom",
+      "duration": null
+    },
+    {
+      "id": "debuff_point_split",
+      "name": "Shared Penalty",
+      "description": "Lose points equal to what you gain (net zero)",
+      "type": "debuff",
+      "icon": "Ring_of_recoil",
+      "duration": null
+    },
+    {
+      "id": "debuff_sabotage",
+      "name": "Sabotaged Task",
+      "description": "First completion attempt automatically fails",
+      "type": "debuff",
+      "icon": "Ghostly_robe_top",
+      "duration": null
+    },
+    {
+      "id": "debuff_priority_target",
+      "name": "High Value Target",
+      "description": "Enemy team can see this tile's location",
+      "type": "debuff",
+      "icon": "Warrior_ring",
+      "duration": null
+    },
+    {
+      "id": "debuff_cooldown",
+      "name": "Exhaustion",
+      "description": "Team cannot claim another tile for 3 hours after this one",
+      "type": "debuff",
+      "icon": "Energy_potion(4)",
+      "duration": null
+    },
+    {
+      "id": "debuff_reverse_progress",
+      "name": "Backfire",
+      "description": "If abandoned, lose points equal to time spent on it",
+      "type": "debuff",
+      "icon": "Ancient_shard",
+      "duration": null
+    },
+    {
+      "id": "debuff_fog_of_war",
+      "name": "Dense Fog",
+      "description": "Cannot see adjacent tiles until this is completed",
+      "type": "debuff",
+      "icon": "Smoke_devil",
+      "duration": null
+    },
+    {
+      "id": "debuff_point_gamble",
+      "name": "High Risk",
+      "description": "50% chance to gain 300 points, 50% chance to lose 150 points",
+      "type": "debuff",
+      "icon": "Dwarven_rock_cake",
+      "duration": null
+    },
+    {
+      "id": "debuff_team_lock",
+      "name": "All Hands Required",
+      "description": "ALL team members must contribute to complete this tile",
+      "type": "debuff",
+      "icon": "Team_cape",
+      "duration": null
+    },
+    {
+      "id": "debuff_broadcast",
+      "name": "Public Announcement",
+      "description": "Enemy team is notified when you start working on this tile",
+      "type": "debuff",
+      "icon": "Horn",
+      "duration": null
+    },
+    {
+      "id": "debuff_false_completion",
+      "name": "Mirage",
+      "description": "Appears complete to you but enemy can still bomb it",
+      "type": "debuff",
+      "icon": "Desert_amulet_4",
+      "duration": null
+    },
+    {
+      "id": "debuff_difficulty_spike",
+      "name": "Nightmare Mode",
+      "description": "Task requirement increased by 50%",
+      "type": "debuff",
+      "icon": "The_Nightmare",
+      "duration": null
+    },
+    {
+      "id": "debuff_ship_exposure",
+      "name": "Weak Point",
+      "description": "If bombed, entire ship takes critical damage",
+      "type": "debuff",
+      "icon": "Dragon_sword",
+      "duration": null
+    },
+    {
+      "id": "debuff_delayed_points",
+      "name": "Delayed Reward",
+      "description": "Points awarded 48 hours after completion",
+      "type": "debuff",
+      "icon": "Bag_of_salt",
+      "duration": null
+    },
+    {
+      "id": "debuff_resource_drain",
+      "name": "Supply Shortage",
+      "description": "Each hour active, random team member loses 50 points",
+      "type": "debuff",
+      "icon": "Empty_vial",
+      "duration": null
+    },
+    {
+      "id": "debuff_scrambled",
+      "name": "Communications Jammed",
+      "description": "Team chat disabled for 2 hours after claiming this tile",
+      "type": "debuff",
+      "icon": "Ensouled_demon_head",
+      "duration": null
+    }
+  ]
+}

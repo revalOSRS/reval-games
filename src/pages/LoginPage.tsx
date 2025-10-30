@@ -8,6 +8,7 @@ import { getDiscordAuthUrl } from '@/config/discord'
 
 export default function LoginPage() {
   const [error, setError] = useState('')
+  const [discordInvite, setDiscordInvite] = useState<string | null>(null)
   const navigate = useNavigate()
   const search = useSearch({ strict: false }) as { code?: string }
   const discordAuthMutation = useDiscordAuth()
@@ -31,12 +32,18 @@ export default function LoginPage() {
           },
           onError: (error) => {
             if (error instanceof ApiError) {
-              setError(error.message || 'Discord autentimine ebaõnnestus')
+              const errorMessage = error.message || 'Discord autentimine ebaõnnestus'
+              setError(errorMessage)
+              
+              // Check if error response has discord_invite
+              if (error.response?.discord_invite) {
+                setDiscordInvite(error.response.discord_invite)
+              }
             } else {
               setError('Discord autentimine ebaõnnestus')
             }
             // Clear the code from URL
-            window.history.replaceState({}, '', '/')
+            window.history.replaceState({}, '', '/login')
           },
         }
       )
@@ -46,6 +53,27 @@ export default function LoginPage() {
   const handleDiscordLogin = () => {
     window.location.href = getDiscordAuthUrl()
   }
+
+  const handleDevLogin = () => {
+    // Mock user data for development
+    const mockUser = {
+      memberId: 1,
+      code: '106092123',
+      profile: {
+        id: 1,
+        discord_id: '603849391970975744',
+        discord_tag: 'enzyax',
+        member_code: 106092123,
+        is_active: true,
+        created_at: new Date().toISOString(),
+      },
+      authType: 'dev'
+    }
+    localStorage.setItem('user', JSON.stringify(mockUser))
+    navigate({ to: '/menu' })
+  }
+
+  const isDev = import.meta.env.DEV
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -63,8 +91,18 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent className="space-y-4 px-6 pb-8">
           {error && (
-            <div className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg">
+            <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg space-y-3">
               <p className="text-sm text-destructive text-center">{error}</p>
+              {discordInvite && (
+                <Button
+                  onClick={() => window.open(discordInvite, '_blank')}
+                  variant="outline"
+                  className="w-full"
+                  size="sm"
+                >
+                  Liitu Discord Serveriga
+                </Button>
+              )}
             </div>
           )}
           
@@ -112,6 +150,29 @@ export default function LoginPage() {
               </>
             )}
           </Button>
+
+          {isDev && (
+            <>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Dev Mode
+                  </span>
+                </div>
+              </div>
+
+              <Button
+                onClick={handleDevLogin}
+                variant="outline"
+                className="w-full"
+              >
+                🔧 Dev Login (Skip Discord)
+              </Button>
+            </>
+          )}
 
           <div className="pt-4 text-center">
             <p className="text-xs text-muted-foreground">

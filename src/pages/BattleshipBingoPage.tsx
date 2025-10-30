@@ -22,9 +22,9 @@ export default function BattleshipBingoPage() {
   const rows = Array.from({ length: 15 }, (_, i) => i + 1)
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="fixed inset-0 top-14 flex flex-col overflow-hidden bg-background">
       {/* Navigation Tabs - Centered at top */}
-      <div className="flex justify-center items-center gap-2 py-4 px-4">
+      <div className="flex-shrink-0 flex justify-center items-center gap-2 py-4 px-4 border-b border-border/40">
         <Button
           variant={activeTab === 'team1' ? 'default' : 'outline'}
           onClick={() => setActiveTab('team1')}
@@ -67,14 +67,14 @@ export default function BattleshipBingoPage() {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 flex flex-col items-center px-4 pb-4">
+      <div className="flex-1 flex flex-col items-center overflow-hidden">
         {activeTab === 'board' && (
-          <div className="w-full max-w-full flex flex-col items-center space-y-4">
-            <h2 className="text-3xl font-bold text-center">BOARD LAYOUT</h2>
+          <div className="w-full h-full flex flex-col items-center py-4">
+            <h2 className="text-3xl font-bold text-center mb-4 flex-shrink-0">BOARD LAYOUT</h2>
             
-            {/* Board Grid - Much larger and centered */}
-            <div className="overflow-auto max-h-[calc(100vh-200px)] w-full flex justify-center">
-              <div className="inline-block">
+            {/* Board Grid - Scrollable */}
+            <div className="flex-1 overflow-auto w-full flex justify-center px-4">
+              <div className="inline-block h-fit">
                 <div className="flex">
                   {/* Empty corner cell */}
                   <div className="w-16 h-16 flex-shrink-0 border-2 border-input bg-card flex items-center justify-center text-sm font-bold">
@@ -123,37 +123,45 @@ export default function BattleshipBingoPage() {
         )}
 
         {activeTab === 'team1' && (
-          <div className="w-full max-w-4xl space-y-4">
-            <h2 className="text-3xl font-bold text-center">TEAM 1</h2>
-            <div className="bg-card border border-input rounded-lg p-6">
-              <p className="text-muted-foreground text-center">Team 1 details will be displayed here</p>
+          <div className="w-full h-full flex flex-col items-center py-4 px-4 overflow-auto">
+            <div className="w-full max-w-4xl space-y-4">
+              <h2 className="text-3xl font-bold text-center flex-shrink-0">TEAM 1</h2>
+              <div className="bg-card border border-input rounded-lg p-6">
+                <p className="text-muted-foreground text-center">Team 1 details will be displayed here</p>
+              </div>
             </div>
           </div>
         )}
 
         {activeTab === 'team2' && (
-          <div className="w-full max-w-4xl space-y-4">
-            <h2 className="text-3xl font-bold text-center">TEAM 2</h2>
-            <div className="bg-card border border-input rounded-lg p-6">
-              <p className="text-muted-foreground text-center">Team 2 details will be displayed here</p>
+          <div className="w-full h-full flex flex-col items-center py-4 px-4 overflow-auto">
+            <div className="w-full max-w-4xl space-y-4">
+              <h2 className="text-3xl font-bold text-center flex-shrink-0">TEAM 2</h2>
+              <div className="bg-card border border-input rounded-lg p-6">
+                <p className="text-muted-foreground text-center">Team 2 details will be displayed here</p>
+              </div>
             </div>
           </div>
         )}
 
         {activeTab === 'tiles' && (
-          <div className="w-full max-w-4xl space-y-4">
-            <h2 className="text-3xl font-bold text-center">TILE LIST</h2>
-            <div className="bg-card border border-input rounded-lg p-6">
-              <p className="text-muted-foreground text-center">Tile list will be displayed here</p>
+          <div className="w-full h-full flex flex-col items-center py-4 px-4 overflow-auto">
+            <div className="w-full max-w-4xl space-y-4">
+              <h2 className="text-3xl font-bold text-center flex-shrink-0">TILE LIST</h2>
+              <div className="bg-card border border-input rounded-lg p-6">
+                <p className="text-muted-foreground text-center">Tile list will be displayed here</p>
+              </div>
             </div>
           </div>
         )}
 
         {activeTab === 'roles' && (
-          <div className="w-full max-w-4xl space-y-4">
-            <h2 className="text-3xl font-bold text-center">ROLES & INFO</h2>
-            <div className="bg-card border border-input rounded-lg p-6">
-              <p className="text-muted-foreground text-center">Roles and game information will be displayed here</p>
+          <div className="w-full h-full flex flex-col items-center py-4 px-4 overflow-auto">
+            <div className="w-full max-w-4xl space-y-4">
+              <h2 className="text-3xl font-bold text-center flex-shrink-0">ROLES & INFO</h2>
+              <div className="bg-card border border-input rounded-lg p-6">
+                <p className="text-muted-foreground text-center">Roles and game information will be displayed here</p>
+              </div>
             </div>
           </div>
         )}
