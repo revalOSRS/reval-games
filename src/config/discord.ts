@@ -1,13 +1,13 @@
 export const DISCORD_CONFIG = {
   CLIENT_ID: '1426865801553776670',
-  REDIRECT_URI: 'https://reval-games.vercel.app/',
+  REDIRECT_URI: 'https://revalosrs.ee/',
   // For local development, you might want to use:
   // REDIRECT_URI: 'http://localhost:5173/',
   SCOPE: 'identify guilds guilds.members.read',
   // Your Discord server ID where members must be
-  REQUIRED_GUILD_ID: 'YOUR_DISCORD_SERVER_ID_HERE',
+  REQUIRED_GUILD_ID: '1425080688063025286',
   // Role IDs that users must have (at least one)
-  REQUIRED_ROLE_IDS: ['ROLE_ID_1', 'ROLE_ID_2'], // Replace with actual role IDs
+  REQUIRED_ROLE_IDS: ['1433552611340189716'], // Replace with actual role IDs
 }
 
 export function getDiscordAuthUrl(): string {
