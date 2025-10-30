@@ -96,6 +96,7 @@ export function HeroSection() {
     const [memberCount, setMemberCount] = React.useState<number | null>(null)
     const [activities, setActivities] = React.useState<ActivityEvent[]>([])
     const [clanActivities, setClanActivities] = React.useState<WOMActivity[]>([])
+    const [imageLoaded, setImageLoaded] = React.useState(false)
     const [clanStats, setClanStats] = React.useState({
         avgLevel: 0,
         avgXP: 0,
@@ -325,10 +326,24 @@ export function HeroSection() {
 
                                     {/* Central Banner Image - Large and Centered */}
                                     <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative overflow-hidden rounded-2xl border shadow-lg shadow-zinc-950/15 ring-1">
+                                        {!imageLoaded && (
+                                            <div className="absolute inset-0 bg-zinc-900 animate-pulse rounded-2xl flex items-center justify-center">
+                                                <div className="text-zinc-600">
+                                                    <svg className="animate-spin h-12 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        )}
                                         <img
-                                            className="bg-background relative rounded-2xl w-full h-auto"
+                                            className={cn(
+                                                "bg-background relative rounded-2xl w-full h-auto transition-opacity duration-500",
+                                                imageLoaded ? "opacity-100" : "opacity-0"
+                                            )}
                                             src={bannerImage}
                                             alt="Reval Banner"
+                                            onLoad={() => setImageLoaded(true)}
                                         />
                                     </div>
 
