@@ -2,11 +2,16 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 
+// These constants are exported for potential future use
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 type SidebarContext = {

@@ -127,6 +127,7 @@ export default function LandingPage() {
   useEffect(() => {
     // Hide scrollbar on mount
     document.documentElement.style.scrollbarWidth = 'none'
+    // @ts-ignore - msOverflowStyle is not in TS types but exists in IE/Edge
     document.documentElement.style.msOverflowStyle = 'none'
     document.body.style.overflow = 'overlay'
     
@@ -141,6 +142,7 @@ export default function LandingPage() {
     // Restore scrollbar on unmount
     return () => {
       document.documentElement.style.scrollbarWidth = ''
+      // @ts-ignore - msOverflowStyle is not in TS types but exists in IE/Edge
       document.documentElement.style.msOverflowStyle = ''
       document.body.style.overflow = ''
       document.head.removeChild(style)

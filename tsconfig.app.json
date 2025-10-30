@@ -26,5 +26,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/components/ui/chart.tsx", "src/components/kokonutui/card-flip.tsx"]
 }

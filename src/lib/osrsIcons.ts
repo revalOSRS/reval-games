@@ -8,10 +8,10 @@ const WIKI_BASE_URL = 'https://oldschool.runescape.wiki'
 /**
  * Get the URL for an OSRS Wiki image
  * @param iconName - The name of the icon (e.g., "Abyssal_whip", "Zulrah", "Attack")
- * @param size - Optional size parameter (default: auto)
+ * @param _size - Optional size parameter (default: auto) - currently unused
  * @returns The full URL to the image
  */
-export function getOSRSIconUrl(iconName: string, size?: number): string {
+export function getOSRSIconUrl(iconName: string, _size?: number): string {
   // For most items, the detail image is at /images/<name>_detail.png
   // For some items like skills or bosses, it's just /images/<name>.png
   

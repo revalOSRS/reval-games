@@ -35,9 +35,10 @@ export default function LoginPage() {
               const errorMessage = error.message || 'Discord autentimine ebaõnnestus'
               setError(errorMessage)
               
-              // Check if error response has discord_invite
-              if (error.response?.discord_invite) {
-                setDiscordInvite(error.response.discord_invite)
+              // Check if error has discord_invite in the data
+              const errorData = error as any
+              if (errorData.discord_invite) {
+                setDiscordInvite(errorData.discord_invite)
               }
             } else {
               setError('Discord autentimine ebaõnnestus')
