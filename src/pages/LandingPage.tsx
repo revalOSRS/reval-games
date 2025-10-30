@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/hero-section-1'
 import { useEffect, useRef } from 'react'
+import { useNavigate, useSearch } from '@tanstack/react-router'
 
 // Beams animation
 function createBeam(width: number, height: number) {
@@ -124,6 +125,18 @@ function BeamsBackgroundCanvas() {
 }
 
 export default function LandingPage() {
+  const navigate = useNavigate()
+  const search = useSearch({ strict: false }) as { code?: string }
+
+  // Handle Discord OAuth callback
+  useEffect(() => {
+    const code = search.code
+    if (code) {
+      // Redirect to login page with the code for authentication
+      navigate({ to: '/login', search: { code } })
+    }
+  }, [search.code, navigate])
+
   useEffect(() => {
     // Hide scrollbar on mount
     document.documentElement.style.scrollbarWidth = 'none'

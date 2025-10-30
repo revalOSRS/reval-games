@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from '@tanstack/react-router'
-import { Menu, X } from 'lucide-react'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { Menu, X, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { AnimatedList } from '@/components/ui/animated-list'
@@ -18,6 +18,7 @@ import trialistRank from '@/assets/ranks/trialist.png'
 import { activityApi, type ActivityEvent, type WOMActivity } from '@/api/activities'
 import { womApi } from '@/api/wom'
 import { ClanStats } from '@/components/ClanStats'
+import { isAuthenticated, getStoredUser } from '@/hooks/useAuth'
 
 const transitionVariants = {
     item: {
@@ -97,6 +98,10 @@ export function HeroSection() {
     const [activities, setActivities] = React.useState<ActivityEvent[]>([])
     const [clanActivities, setClanActivities] = React.useState<WOMActivity[]>([])
     const [imageLoaded, setImageLoaded] = React.useState(false)
+    const [showUserMenu, setShowUserMenu] = React.useState(false)
+    const navigate = useNavigate()
+    const userData = getStoredUser()
+    const loggedIn = isAuthenticated()
     const [clanStats, setClanStats] = React.useState({
         avgLevel: 0,
         avgXP: 0,
@@ -110,6 +115,11 @@ export function HeroSection() {
         totalTombs: 0,
         totalTheatres: 0,
     })
+
+    const handleLogout = () => {
+        localStorage.removeItem('user')
+        window.location.reload()
+    }
 
     React.useEffect(() => {
         // Fetch clan statistics from WOM
@@ -251,16 +261,51 @@ export function HeroSection() {
                                             </a>
                                         </Button>
                                     </div>
-                                    <Button
-                                        key={2}
-                                        asChild
-                                        size="lg"
-                                        variant="ghost"
-                                        className="h-10.5 rounded-xl px-5">
-                                        <Link to="/login">
-                                            <span className="text-nowrap">Sisene Mängukoopasse</span>
-                                        </Link>
-                                    </Button>
+                                    {loggedIn ? (
+                                        <div className="relative">
+                                            <Button
+                                                key={2}
+                                                size="lg"
+                                                variant="ghost"
+                                                className="h-10.5 rounded-xl px-5"
+                                                onClick={() => setShowUserMenu(!showUserMenu)}
+                                            >
+                                                <span className="text-nowrap">{userData?.profile?.discord_tag || 'Kasutaja'}</span>
+                                            </Button>
+                                            {showUserMenu && (
+                                                <div className="absolute top-full mt-2 right-0 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg min-w-[200px] z-50">
+                                                    <div className="p-2">
+                                                        <Button
+                                                            variant="ghost"
+                                                            className="w-full justify-start"
+                                                            onClick={() => navigate({ to: '/menu' })}
+                                                        >
+                                                            Mängukoobas
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            className="w-full justify-start text-destructive hover:text-destructive"
+                                                            onClick={handleLogout}
+                                                        >
+                                                            <LogOut className="mr-2 h-4 w-4" />
+                                                            Logi välja
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            key={2}
+                                            asChild
+                                            size="lg"
+                                            variant="ghost"
+                                            className="h-10.5 rounded-xl px-5">
+                                            <Link to="/login">
+                                                <span className="text-nowrap">Sisene Mängukoopasse</span>
+                                            </Link>
+                                        </Button>
+                                    )}
                                 </AnimatedGroup>
                             </div>
                         </div>
