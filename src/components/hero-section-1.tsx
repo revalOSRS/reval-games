@@ -261,51 +261,16 @@ export function HeroSection() {
                                             </a>
                                         </Button>
                                     </div>
-                                    {loggedIn ? (
-                                        <div className="relative">
-                                            <Button
-                                                key={2}
-                                                size="lg"
-                                                variant="ghost"
-                                                className="h-10.5 rounded-xl px-5"
-                                                onClick={() => setShowUserMenu(!showUserMenu)}
-                                            >
-                                                <span className="text-nowrap">{userData?.profile?.discord_tag || 'Kasutaja'}</span>
-                                            </Button>
-                                            {showUserMenu && (
-                                                <div className="absolute top-full mt-2 right-0 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg min-w-[200px] z-50">
-                                                    <div className="p-2">
-                                                        <Button
-                                                            variant="ghost"
-                                                            className="w-full justify-start"
-                                                            onClick={() => navigate({ to: '/menu' })}
-                                                        >
-                                                            Mängukoobas
-                                                        </Button>
-                                                        <Button
-                                                            variant="ghost"
-                                                            className="w-full justify-start text-destructive hover:text-destructive"
-                                                            onClick={handleLogout}
-                                                        >
-                                                            <LogOut className="mr-2 h-4 w-4" />
-                                                            Logi välja
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ) : (
-                                        <Button
-                                            key={2}
-                                            asChild
-                                            size="lg"
-                                            variant="ghost"
-                                            className="h-10.5 rounded-xl px-5">
-                                            <Link to="/login">
-                                                <span className="text-nowrap">Sisene Mängukoopasse</span>
-                                            </Link>
-                                        </Button>
-                                    )}
+                                    <Button
+                                        key={2}
+                                        asChild
+                                        size="lg"
+                                        variant="ghost"
+                                        className="h-10.5 rounded-xl px-5">
+                                        <Link to={loggedIn ? "/menu" : "/login"}>
+                                            <span className="text-nowrap">Sisene Mängukoopasse</span>
+                                        </Link>
+                                    </Button>
                                 </AnimatedGroup>
                             </div>
                         </div>
@@ -545,23 +510,58 @@ export const HeroHeader = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm"
-                                    className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link to="/login">
-                                        <span>Login</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm"
-                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link to="/login">
-                                        <span>Login</span>
-                                    </Link>
-                                </Button>
+                                {loggedIn ? (
+                                    <div className="relative">
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => setShowUserMenu(!showUserMenu)}
+                                        >
+                                            <span>{userData?.profile?.discord_tag || 'Kasutaja'}</span>
+                                        </Button>
+                                        {showUserMenu && (
+                                            <div className="absolute top-full mt-2 right-0 bg-zinc-900 border border-zinc-800 rounded-xl shadow-lg min-w-[200px] z-50">
+                                                <div className="p-2">
+                                                    <Button
+                                                        variant="ghost"
+                                                        className="w-full justify-start"
+                                                        onClick={() => navigate({ to: '/menu' })}
+                                                    >
+                                                        Mängukoobas
+                                                    </Button>
+                                                    <Button
+                                                        variant="ghost"
+                                                        className="w-full justify-start text-destructive hover:text-destructive"
+                                                        onClick={handleLogout}
+                                                    >
+                                                        <LogOut className="mr-2 h-4 w-4" />
+                                                        Logi välja
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <>
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="sm"
+                                            className={cn(isScrolled && 'lg:hidden')}>
+                                            <Link to="/login">
+                                                <span>Login</span>
+                                            </Link>
+                                        </Button>
+                                        <Button
+                                            asChild
+                                            size="sm"
+                                            className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
+                                            <Link to="/login">
+                                                <span>Login</span>
+                                            </Link>
+                                        </Button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
