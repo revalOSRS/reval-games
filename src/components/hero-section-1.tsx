@@ -98,10 +98,6 @@ export function HeroSection() {
     const [activities, setActivities] = React.useState<ActivityEvent[]>([])
     const [clanActivities, setClanActivities] = React.useState<WOMActivity[]>([])
     const [imageLoaded, setImageLoaded] = React.useState(false)
-    const [showUserMenu, setShowUserMenu] = React.useState(false)
-    const navigate = useNavigate()
-    const userData = getStoredUser()
-    const loggedIn = isAuthenticated()
     const [clanStats, setClanStats] = React.useState({
         avgLevel: 0,
         avgXP: 0,
@@ -115,11 +111,6 @@ export function HeroSection() {
         totalTombs: 0,
         totalTheatres: 0,
     })
-
-    const handleLogout = () => {
-        localStorage.removeItem('user')
-        window.location.reload()
-    }
 
     React.useEffect(() => {
         // Fetch clan statistics from WOM
@@ -433,6 +424,15 @@ const menuItems = [
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
+    const [showUserMenu, setShowUserMenu] = React.useState(false)
+    const navigate = useNavigate()
+    const userData = getStoredUser()
+    const loggedIn = isAuthenticated()
+
+    const handleLogout = () => {
+        localStorage.removeItem('user')
+        window.location.reload()
+    }
 
     React.useEffect(() => {
         const handleScroll = () => {
