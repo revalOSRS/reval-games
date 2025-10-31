@@ -157,10 +157,21 @@ export function HeroSection() {
         // Initial fetch
         fetchActivities()
 
-        // Poll every 60 seconds (1 minute) for new activities
-        const interval = setInterval(fetchActivities, 60000)
+        // Poll every 2 minutes (reduced from 1 minute) for new activities
+        const interval = setInterval(fetchActivities, 120000)
+        
+        // Pause polling when page is not visible to save resources
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                clearInterval(interval)
+            }
+        }
+        document.addEventListener('visibilitychange', handleVisibilityChange)
 
-        return () => clearInterval(interval)
+        return () => {
+            clearInterval(interval)
+            document.removeEventListener('visibilitychange', handleVisibilityChange)
+        }
     }, [])
 
     React.useEffect(() => {
@@ -176,10 +187,21 @@ export function HeroSection() {
         // Initial fetch
         fetchClanActivities()
 
-        // Poll every 30 seconds for new clan activities
-        const interval = setInterval(fetchClanActivities, 30000)
+        // Poll every 2 minutes (reduced from 30 seconds) for new clan activities
+        const interval = setInterval(fetchClanActivities, 120000)
+        
+        // Pause polling when page is not visible to save resources
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                clearInterval(interval)
+            }
+        }
+        document.addEventListener('visibilitychange', handleVisibilityChange)
 
-        return () => clearInterval(interval)
+        return () => {
+            clearInterval(interval)
+            document.removeEventListener('visibilitychange', handleVisibilityChange)
+        }
     }, [])
 
     return (

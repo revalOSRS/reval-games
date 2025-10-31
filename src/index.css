@@ -75,11 +75,34 @@ body {
   min-height: 100vh;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  /* Performance optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
 
 #root {
   min-height: 100vh;
   overflow-x: hidden;
+  /* GPU acceleration for smoother scrolling */
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Performance: Contain layout and paint for better scroll performance */
+.performance-contain {
+  contain: layout style paint;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Custom Scrollbar Styling - Elegant & Minimalistic */
