@@ -84,9 +84,6 @@ body {
 #root {
   min-height: 100vh;
   overflow-x: hidden;
-  /* GPU acceleration for smoother scrolling */
-  transform: translateZ(0);
-  will-change: scroll-position;
 }
 
 /* Performance: Contain layout and paint for better scroll performance */
