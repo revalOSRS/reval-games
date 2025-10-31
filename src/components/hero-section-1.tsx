@@ -234,7 +234,6 @@ export function HeroSection() {
                                             totalMembers={memberCount || 0}
                                             avgTotalLevel={clanStats.avgLevel}
                                             avgTotalXP={clanStats.avgXP}
-                                            maxedPercent={clanStats.maxedPercent}
                                             maxedCount={clanStats.maxedCount}
                                             monthlyStats={{
                                                 totalEHP: clanStats.totalEHP,
