@@ -68,11 +68,6 @@ export function MemberCard({ member, playerData, isLoading, rankImage }: MemberC
     return num.toString()
   }
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('et-EE', { month: 'short', day: 'numeric', year: 'numeric' })
-  }
-
   const badges = playerData ? getPlayerBadges(playerData) : []
 
   return (
