@@ -128,6 +128,77 @@ export interface WOMClanStatisticsResponse {
   message?: string
 }
 
+export interface PlayerSkill {
+  skill: string
+  experience: number
+  level: number
+  rank: number
+  ehp: number
+}
+
+export interface PlayerBoss {
+  boss: string
+  kills: number
+  rank: number
+  ehb: number
+}
+
+export interface PlayerActivity {
+  activity: string
+  score: number
+  rank: number
+}
+
+export interface PlayerComputed {
+  metric: string
+  value: number
+  rank: number
+}
+
+export interface ClanPlayer {
+  id: number
+  playerId: number
+  username: string
+  displayName: string
+  type: string
+  build: string
+  country: string | null
+  status: string
+  patron: boolean
+  stats: {
+    totalExp: number
+    totalLevel: number
+    combatLevel: number
+    ehp: number
+    ehb: number
+    ttm: number
+    tt200m: number
+  }
+  skills: PlayerSkill[]
+  bosses: PlayerBoss[]
+  activities: PlayerActivity[]
+  computed: PlayerComputed[]
+  timestamps: {
+    registeredAt: string
+    updatedAt: string
+    lastChangedAt: string
+  }
+}
+
+export interface ClanPlayersResponse {
+  status: 'success' | 'error'
+  data: {
+    clanSnapshot: {
+      id: number
+      snapshotDate: string
+      groupName: string
+    }
+    players: ClanPlayer[]
+    count: number
+  }
+  message?: string
+}
+
 export const womApi = {
   getPlayer: async (username: string): Promise<WOMPlayerResponse> => {
     try {
@@ -211,6 +282,28 @@ export const womApi = {
         status: 'error',
         data: {} as WOMClanStatistics,
         message: 'Failed to fetch clan statistics',
+      }
+    }
+  },
+
+  getClanPlayers: async (): Promise<ClanPlayersResponse> => {
+    try {
+      const response = await api.get<ClanPlayersResponse>('/wom/clan/players')
+      return response
+    } catch (error) {
+      console.error('Failed to fetch clan players:', error)
+      return {
+        status: 'error',
+        data: {
+          clanSnapshot: {
+            id: 0,
+            snapshotDate: '',
+            groupName: '',
+          },
+          players: [],
+          count: 0,
+        },
+        message: 'Failed to fetch clan players',
       }
     }
   },

@@ -15,6 +15,9 @@ import monarchRank from '@/assets/ranks/monarch.png'
 import saviourRank from '@/assets/ranks/saviour.png'
 import defilerRank from '@/assets/ranks/defiler.png'
 import trialistRank from '@/assets/ranks/trialist.png'
+import administratorRank from '@/assets/ranks/administrator.png'
+import deputyOwnerRank from '@/assets/ranks/deputy_owner.png'
+import ownerRank from '@/assets/ranks/owner.png'
 import { activityApi, type ActivityEvent, type WOMActivity } from '@/api/activities'
 import { womApi } from '@/api/wom'
 import { ClanStats } from '@/components/ClanStats'
@@ -68,15 +71,18 @@ function formatWOMActivity(activity: WOMActivity): { icon: string; text: string;
             return { icon: '✏️', text: `${displayName} vahetas nime` }
         case 'changed_role':
             const roleMap: Record<string, { name: string; image: string }> = {
-                'monarch': { name: 'Monarh', image: monarchRank },
-                'executive': { name: 'Juhataja', image: executiveRank },
-                'leader': { name: 'Liider', image: leaderRank },
-                'senator': { name: 'Senaator', image: senatorRank },
-                'superior': { name: 'Ülemus', image: superiorRank },
-                'supervisor': { name: 'Ülevaataja', image: supervisorRank },
-                'saviour': { name: 'Päästja', image: saviourRank },
-                'defiler': { name: 'Rüvetaja', image: defilerRank },
-                'trialist': { name: 'Prooviline', image: trialistRank }
+                'owner': { name: 'Owner', image: ownerRank },
+                'deputy_owner': { name: 'Deputy Owner', image: deputyOwnerRank },
+                'administrator': { name: 'Administrator', image: administratorRank },
+                'monarch': { name: 'Monarch', image: monarchRank },
+                'executive': { name: 'Executive', image: executiveRank },
+                'leader': { name: 'Leader', image: leaderRank },
+                'senator': { name: 'Senator', image: senatorRank },
+                'superior': { name: 'Superior', image: superiorRank },
+                'supervisor': { name: 'Supervisor', image: supervisorRank },
+                'saviour': { name: 'Saviour', image: saviourRank },
+                'defiler': { name: 'Defiler', image: defilerRank },
+                'trialist': { name: 'Trialist', image: trialistRank }
             }
             
             const roleInfo = activity.role ? roleMap[activity.role] : null
@@ -221,8 +227,7 @@ export function HeroSection() {
                         <div className="mx-auto max-w-7xl px-6">
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
-                                    <h1
-                                        className="mt-4 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-6 xl:text-[5.25rem]">
+                                    <h1 className="mt-4 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-6 xl:text-[5.25rem]">
                                         REVAL
                                     </h1>
                                 </AnimatedGroup>

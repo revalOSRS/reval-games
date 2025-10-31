@@ -1,8 +1,10 @@
 import React from 'react'
 import { MemberCard } from '@/components/MemberCard'
 import { HeroHeader } from '@/components/hero-section-1'
-import { womApi, type WOMGroupMember } from '@/api/wom'
+import { womApi, type WOMGroupMember, type ClanPlayer } from '@/api/wom'
+import { membersApi } from '@/api/members'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Button } from '@/components/ui/button'
 
 // Import rank images
 import senatorRank from '@/assets/ranks/senator.png'
@@ -14,8 +16,14 @@ import monarchRank from '@/assets/ranks/monarch.png'
 import saviourRank from '@/assets/ranks/saviour.png'
 import defilerRank from '@/assets/ranks/defiler.png'
 import trialistRank from '@/assets/ranks/trialist.png'
+import administratorRank from '@/assets/ranks/administrator.png'
+import deputyOwnerRank from '@/assets/ranks/deputy_owner.png'
+import ownerRank from '@/assets/ranks/owner.png'
 
 const rankImageMap: Record<string, string> = {
+  'owner': ownerRank,
+  'deputy_owner': deputyOwnerRank,
+  'administrator': administratorRank,
   'monarch': monarchRank,
   'executive': executiveRank,
   'leader': leaderRank,
@@ -27,19 +35,61 @@ const rankImageMap: Record<string, string> = {
   'trialist': trialistRank,
 }
 
+interface MemberWithData {
+  womGroupMember: WOMGroupMember
+  playerData?: ClanPlayer
+  discordMember?: any
+}
+
+type SortOption = 'ehp' | 'ehb' | 'totalLevel' | 'totalXP' | 'rank'
+
 export function MembersPage() {
-  const [members, setMembers] = React.useState<WOMGroupMember[]>([])
+  const [members, setMembers] = React.useState<MemberWithData[]>([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [searchQuery, setSearchQuery] = React.useState('')
+  const [sortBy, setSortBy] = React.useState<SortOption>('ehp')
 
   React.useEffect(() => {
     const fetchMembers = async () => {
       setIsLoading(true)
       try {
-        const response = await womApi.getGroupMembers()
+        // Fetch both WOM group members and clan players data in parallel
+        const [womGroupResponse, clanPlayersResponse, discordMembersResponse] = await Promise.all([
+          womApi.getGroupMembers(),
+          womApi.getClanPlayers(),
+          membersApi.getAllMembers().catch(() => ({ status: 'error', data: [] }))
+        ])
         
-        if (response.status === 'success') {
-          setMembers(response.data)
+        if (womGroupResponse.status === 'success' && clanPlayersResponse.status === 'success') {
+          // Create a map of player data by username for quick lookup
+          const playerDataMap = new Map<string, ClanPlayer>()
+          clanPlayersResponse.data.players.forEach(player => {
+            playerDataMap.set(player.username.toLowerCase(), player)
+          })
+
+          // Create a map of discord members by osrs nickname
+          const discordMembersMap = new Map<string, any>()
+          if (discordMembersResponse.status === 'success' && Array.isArray(discordMembersResponse.data)) {
+            discordMembersResponse.data.forEach((member: any) => {
+              if (member.osrs_nickname) {
+                discordMembersMap.set(member.osrs_nickname.toLowerCase(), member)
+              }
+            })
+          }
+
+          // Combine the data
+          const combinedMembers: MemberWithData[] = womGroupResponse.data.map(womMember => {
+            const playerData = playerDataMap.get(womMember.player.username.toLowerCase())
+            const discordMember = discordMembersMap.get(womMember.player.username.toLowerCase())
+            
+            return {
+              womGroupMember: womMember,
+              playerData,
+              discordMember,
+            }
+          })
+
+          setMembers(combinedMembers)
         }
       } catch (error) {
         console.error('Failed to fetch members:', error)
@@ -52,14 +102,50 @@ export function MembersPage() {
   }, [])
 
   const filteredMembers = React.useMemo(() => {
-    if (!searchQuery) return members
+    let result = members
     
-    const query = searchQuery.toLowerCase()
-    return members.filter(member => 
-      member.player.displayName.toLowerCase().includes(query) ||
-      member.player.username.toLowerCase().includes(query)
-    )
-  }, [members, searchQuery])
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase()
+      result = result.filter(member => 
+        member.womGroupMember.player.displayName.toLowerCase().includes(query) ||
+        member.womGroupMember.player.username.toLowerCase().includes(query) ||
+        (member.discordMember?.discord_tag && member.discordMember.discord_tag.toLowerCase().includes(query))
+      )
+    }
+
+    // Apply sorting
+    result.sort((a, b) => {
+      switch (sortBy) {
+        case 'ehp':
+          const ehpA = a.playerData?.stats.ehp || 0
+          const ehpB = b.playerData?.stats.ehp || 0
+          return ehpB - ehpA
+        case 'ehb':
+          const ehbA = a.playerData?.stats.ehb || 0
+          const ehbB = b.playerData?.stats.ehb || 0
+          return ehbB - ehbA
+        case 'totalLevel':
+          const levelA = a.playerData?.stats.totalLevel || 0
+          const levelB = b.playerData?.stats.totalLevel || 0
+          return levelB - levelA
+        case 'totalXP':
+          const xpA = a.playerData?.stats.totalExp || 0
+          const xpB = b.playerData?.stats.totalExp || 0
+          return xpB - xpA
+        case 'rank':
+          // Rank hierarchy (lower index = higher rank)
+          const rankOrder = ['owner', 'deputy_owner', 'administrator', 'monarch', 'executive', 'leader', 'senator', 'superior', 'supervisor', 'saviour', 'defiler', 'trialist']
+          const rankA = rankOrder.indexOf(a.womGroupMember.role)
+          const rankB = rankOrder.indexOf(b.womGroupMember.role)
+          return rankA - rankB
+        default:
+          return 0
+      }
+    })
+
+    return result
+  }, [members, searchQuery, sortBy])
 
   return (
     <>
@@ -89,7 +175,7 @@ export function MembersPage() {
               </div>
 
                 {/* Search Bar */}
-                <div className="max-w-md mx-auto">
+                <div className="max-w-4xl mx-auto mb-6">
                   <div className="relative">
                     <input
                       type="text"
@@ -104,18 +190,51 @@ export function MembersPage() {
                   </div>
                 </div>
 
+                {/* Sorting */}
+                <div className="max-w-4xl mx-auto mb-4">
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    <span className="text-zinc-400 text-sm">Sorteeri:</span>
+                    {[
+                      { value: 'ehp', label: 'EHP' },
+                      { value: 'ehb', label: 'EHB' },
+                      { value: 'totalLevel', label: 'Level' },
+                      { value: 'totalXP', label: 'XP' },
+                      { value: 'rank', label: 'Rank' },
+                    ].map((option) => (
+                      <Button
+                        key={option.value}
+                        variant={sortBy === option.value ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setSortBy(option.value as SortOption)}
+                        className={sortBy === option.value
+                          ? 'bg-primary text-white hover:bg-primary/90'
+                          : 'bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:bg-zinc-700 hover:text-white'
+                        }
+                      >
+                        {option.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Stats */}
                 {!isLoading && (
                   <div className="mt-8 flex justify-center gap-8 text-sm">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-primary">{members.length}</p>
-                      <p className="text-zinc-400">Clani Liikmeid</p>
+                      <p className="text-2xl font-bold text-primary">{filteredMembers.length}</p>
+                      <p className="text-zinc-400">{searchQuery ? 'Näidatud' : 'Clani Liikmeid'}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-purple-400">
-                        {members.filter(m => m.player.status === 'active').length}
+                        {members.filter(m => m.womGroupMember.player.status === 'active').length}
                       </p>
                       <p className="text-zinc-400">Aktiivseid</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-yellow-400">
+                        {members.filter(m => m.playerData && m.playerData.skills.every(skill => skill.level >= 99)).length}
+                      </p>
+                      <p className="text-zinc-400">Maxed</p>
                     </div>
                   </div>
                 )}
@@ -135,16 +254,15 @@ export function MembersPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredMembers.map((member) => (
                     <MemberCard
-                      key={member.player.id}
+                      key={member.womGroupMember.player.id}
                       member={{
-                        discord_tag: member.player.displayName,
-                        osrs_nickname: member.player.username,
-                        discord_avatar: undefined, // Will be fetched from new BE endpoint
-                        role: member.role,
+                        discord_tag: member.discordMember?.discord_tag || member.womGroupMember.player.displayName,
+                        osrs_nickname: member.womGroupMember.player.username,
+                        discord_avatar: member.discordMember?.discord_avatar,
+                        role: member.womGroupMember.role,
                       }}
-                      womData={member.player}
-                      achievements={undefined} // Will be fetched from new BE endpoint
-                      rankImage={rankImageMap[member.role]}
+                      playerData={member.playerData}
+                      rankImage={rankImageMap[member.womGroupMember.role]}
                     />
                   ))}
                 </div>
